@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c84pjnwkgvdxr"]
+[gd_scene load_steps=6 format=3 uid="uid://c84pjnwkgvdxr"]
 
 [ext_resource type="Script" path="res://Objects/playerBase.gd" id="1_2dojn"]
 [ext_resource type="Texture2D" uid="uid://b80rkqf2yl0ua" path="res://Assets/placeHolder.png" id="1_3gyug"]
+[ext_resource type="Texture2D" uid="uid://dfx0pakajpiw1" path="res://Assets/lightPlaceHolder.png" id="3_hpg42"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_31d2t"]
 radius = 29.0172
@@ -27,6 +28,11 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="currencyDetector"]
 shape = SubResource("CircleShape2D_o275v")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+shadow_color = Color(0.0588235, 0.0588235, 0.0588235, 0)
+texture = ExtResource("3_hpg42")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

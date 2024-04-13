@@ -25,7 +25,6 @@ var heldObject : Object = null
 var canBuy : bool = false
 var canGrab : bool = true
 
-signal makeMoneyGoUp
 
 func _ready():
 	curHealth = maxHealth
@@ -66,7 +65,7 @@ func get_input():
 				modMaxSpeed = maxSpeed
 				modSpeed = speed
 			else:
-				var i = grab_box.get_overlapping_areas ( )
+				var i = grab_box.get_overlapping_areas()
 				for g in i:
 					if g.is_in_group("Grab"):
 						g.reparent(self)
@@ -75,7 +74,7 @@ func get_input():
 						modSpeed = speed * .6
 						modMaxSpeed = maxSpeed * .6
 						break
-			
+
 
 func updateCur():
 	money.set_text(str(CurrencyCount.currency)) 
