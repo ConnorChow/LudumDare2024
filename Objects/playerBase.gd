@@ -14,7 +14,7 @@ func _on_body_exited(body):
 
 
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("recall"):
 		player.recall(global_position)
 

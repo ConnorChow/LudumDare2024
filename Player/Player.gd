@@ -19,9 +19,12 @@ var curHealth : float
 @onready var money = $UiNodes/Money
 @onready var grab_timer = $grabTimer
 @onready var recall_timer = $recallTimer
+@onready var health_bar = $UiNodes/healthBar
 
 
-var input_direction
+
+
+var input_direction :Vector2
 var heldObject : Object = null
 
 var canBuy : bool = false
@@ -35,6 +38,8 @@ func _ready():
 	CurrencyCount.currency = 0
 	modMaxSpeed = maxSpeed
 	modSpeed = speed
+	health_bar.max_value = maxHealth
+	health_bar.value = curHealth
 
 
 func _physics_process(delta):
@@ -53,7 +58,7 @@ func _physics_process(delta):
 
 	if velocity.x > 0:
 		if !sprite.flip_h == false:
-				sprite.flip_h = false
+			sprite.flip_h = false
 				
 	elif velocity.x < 0:
 		if !sprite.flip_h == true:
@@ -110,13 +115,13 @@ func stopRecall():
 	sprite.visible=true
 	recall_sprite.visible = false
 	recall_timer.stop()
-	
+
 func _on_recall_timer_timeout():
 	global_position = homePosition
 	takeDamage(6)
 	stopRecall()
-	pass # Replace with function body.
-	
+
+
 func updateCur():
 	money.set_text(str(CurrencyCount.currency)) 
 	heldObject = null
@@ -128,11 +133,12 @@ func updateCur():
 
 func updateHealth(val : float):
 	curHealth += val
+	health_bar.value = curHealth
 
 func takeDamage(dmg):
 	hitBox.visible = true
 	hitColor_timer.start()
-	updateHealth(dmg)
+	updateHealth(-dmg)
 
 
 func _on_hit_timer_timeout():

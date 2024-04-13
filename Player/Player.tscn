@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0qrdderuwrjf"]
+[gd_scene load_steps=10 format=3 uid="uid://c0qrdderuwrjf"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_65vep"]
 [ext_resource type="Texture2D" uid="uid://b80rkqf2yl0ua" path="res://Assets/placeHolder.png" id="1_sdcbo"]
@@ -10,6 +10,23 @@ size = Vector2(7, 15)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qcuks"]
 light_mode = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kiaw2"]
+bg_color = Color(0.223529, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0.0117647, 0.0117647, 0.0117647, 0.776471)
+shadow_size = 1
+shadow_offset = Vector2(0.48, -0.56)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6rkc"]
+bg_color = Color(0.6, 0.0588235, 0.329412, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wk7ve"]
 
@@ -76,6 +93,19 @@ offset_top = 610.0
 offset_right = 1022.0
 offset_bottom = 633.0
 text = "0"
+
+[node name="healthBar" type="ProgressBar" parent="UiNodes"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1518.0
+offset_top = 615.0
+offset_right = 1522.0
+offset_bottom = 642.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kiaw2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l6rkc")
+value = 50.0
+fill_mode = 3
+show_percentage = false
 
 [node name="grabBox" type="Area2D" parent="."]
 position = Vector2(-1, 0)
