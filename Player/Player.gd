@@ -1,15 +1,22 @@
 extends CharacterBody2D
 
 
-@export var speed = 10.0
-@export var maxSpeed = 60
-@export var maxHealth = 30
-var curHealth
+@export var speed : float = 10.0
+@export var maxSpeed : float = 60
+@export var maxHealth : float = 30
+var curHealth : float
 
-@export var damage = 8
+@export var damage : float = 8
 
-@onready var sprite = $Sprite2D
+@onready var sprite : Sprite2D = $Sprite2D
+@onready var hitBox = $UiNodes/ColorRect
+@onready var hitColor_timer = $UiNodes/ColorRect/hitTimer
+
 # Get the gravity from the pr$Sprite2Doject settings to be synced with RigidBody nodes.
+
+func _ready():
+	curHealth = maxHealth
+	hitBox.visible = false
 
 
 
@@ -33,3 +40,18 @@ func _physics_process(delta):
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity += input_direction * speed
+	
+	
+func updateHealth(val : float):
+	curHealth += val
+
+func takeDamage(damage):
+	hitBox.visible = true
+	hitColor_timer.start()
+	
+
+
+
+
+func _on_hit_timer_timeout():
+	hitBox.visible = false
