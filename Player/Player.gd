@@ -16,7 +16,7 @@ var curHealth : float
 @onready var hold_point = $holdPoint
 @onready var money = $UiNodes/Money
 
-
+var input_direction
 var heldObject : Object = null
 
 var canBuy : bool = false
@@ -47,7 +47,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func get_input():
-	var input_direction = Input.get_vector("left", "right", "up", "down")
+	input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity += input_direction * speed
 	
 	if Input.is_action_just_pressed("grab"):
