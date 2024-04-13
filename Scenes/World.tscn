@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3lixqglawbhi"]
+[gd_scene load_steps=9 format=3 uid="uid://d3lixqglawbhi"]
 
 [ext_resource type="Texture2D" uid="uid://b80rkqf2yl0ua" path="res://Assets/placeHolder.png" id="1_u32q8"]
 [ext_resource type="PackedScene" uid="uid://c0qrdderuwrjf" path="res://Player/Player.tscn" id="2_y8ry4"]
 [ext_resource type="PackedScene" uid="uid://pstoogj43le5" path="res://Objects/currencyCollectSmall.tscn" id="3_ne0fx"]
 [ext_resource type="PackedScene" uid="uid://c84pjnwkgvdxr" path="res://Objects/playerBase.tscn" id="4_4cb53"]
+[ext_resource type="Texture2D" uid="uid://fduv66ry3ynh" path="res://Assets/floorPlacejholder.png" id="5_d13qm"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hr0bt"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -711,3 +712,9 @@ position = Vector2(-1667, -357)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(-107, 509)
+scale = Vector2(-311.802, 266.007)
+texture = ExtResource("5_d13qm")

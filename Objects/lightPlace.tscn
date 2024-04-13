@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpf5a0mvh6t14"]
+
+[ext_resource type="Texture2D" uid="uid://j8tv3gamxbfg" path="res://Assets/placeHolder2.png" id="1_8pif0"]
+[ext_resource type="Texture2D" uid="uid://dfx0pakajpiw1" path="res://Assets/lightPlaceHolder.png" id="2_7orx0"]
+
+[node name="LightPlace" type="Sprite2D"]
+texture = ExtResource("1_8pif0")
+region_enabled = true
+region_rect = Rect2(20, 0, 20, 20)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("2_7orx0")
+texture_scale = 0.6

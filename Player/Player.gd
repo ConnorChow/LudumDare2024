@@ -17,6 +17,9 @@ var curHealth : float
 @onready var money = $UiNodes/Money
 @onready var health_bar = $UiNodes/healthBar
 
+@onready var i_frames = $iFrames
+var canHurt : bool = true
+
 #upgrades
 var canBuy : bool = false
 @onready var buy_menu = $UiNodes/buyMenu
@@ -29,6 +32,8 @@ var canBuy : bool = false
 #buy player upgrades
 @onready var cur_player_label = $UiNodes/buyMenu/curPlayerLabel
 @onready var buy_player = $UiNodes/buyMenu/buyPlayer
+#placeable light objects
+@onready var placeLight = preload("res://Objects/lightPlace.tscn")
 
 # a short timer to prevent weirdness associated with spam picking up and droppuing
 #items
@@ -99,7 +104,10 @@ func get_input():
 		if Input.is_action_just_pressed("3"):
 			if CurrencyCount.playerUpgradeCost <= CurrencyCount.currency:
 				buyPlayer()
-	
+	if Input.is_action_just_pressed("light"):
+		var l = placeLight.instantiate()
+		l.global_position = global_position
+		get_parent().add_child(l)
 	if Input.is_action_just_pressed("recall"):
 		if heldObject != null:
 				heldObject.reparent(get_parent())
@@ -179,9 +187,14 @@ func updateHealth(val : float):
 	health_bar.value = curHealth
 
 func takeDamage(dmg):
-	hitBox.visible = true
-	hitColor_timer.start()
-	updateHealth(-dmg)
+	if canHurt:
+		hitBox.visible = true
+		hitColor_timer.start()
+		updateHealth(-dmg)
+		i_frames.start()
+
+func _on_i_frames_timeout():
+	canHurt = true
 
 func _on_hit_timer_timeout():
 	hitBox.visible = false
@@ -232,3 +245,7 @@ func buyPlayer():
 	CurrencyCount.playerUpgradeCost = floor(CurrencyCount.playerUpgradeCost * 1.5)
 	cur_upgrade_label.set_text("$" + str(CurrencyCount.playerUpgradeCost))  
 	updateCur()
+
+
+
+
