@@ -55,6 +55,11 @@ right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_3="player detector"
+2d_physics/layer_4="currency detector"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
