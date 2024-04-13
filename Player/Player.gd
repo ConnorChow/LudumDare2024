@@ -48,10 +48,10 @@ func get_input():
 func updateHealth(val : float):
 	curHealth += val
 
-func takeDamage(damage):
+func takeDamage(dmg):
 	hitBox.visible = true
 	hitColor_timer.start()
-	updateHealth(damage)
+	updateHealth(dmg)
 
 
 func _on_hit_timer_timeout():
