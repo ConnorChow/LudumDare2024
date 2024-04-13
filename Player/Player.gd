@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 var input_direction :Vector2
+
 @export var speed : float = 10.0
 var modSpeed : float = 10.0
 @export var maxSpeed : float = 60
@@ -88,6 +89,16 @@ func _physics_process(delta):
 func get_input():
 	input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity += input_direction * modSpeed
+	if canBuy:
+		if Input.is_action_just_pressed("1"):
+			if CurrencyCount.curCost <= CurrencyCount.currency:
+				buyMinion()
+		if Input.is_action_just_pressed("2"):
+			if CurrencyCount.unitUpgradeCost <= CurrencyCount.currency:
+				buyUpgrade()
+		if Input.is_action_just_pressed("3"):
+			if CurrencyCount.playerUpgradeCost <= CurrencyCount.currency:
+				buyPlayer()
 	
 	if Input.is_action_just_pressed("recall"):
 		if heldObject != null:
@@ -148,16 +159,17 @@ func updateCur():
 	modSpeed = speed
 	canGrab = false
 	grab_timer.start()
-	if CurrencyCount.unitUpgradeCost > CurrencyCount.currency:
-		buy_upgrade.set_disabled(true)
-	elif CurrencyCount.unitUpgradeCost <= CurrencyCount.currency:
-		buy_upgrade.set_disabled(false)
 	
 	if CurrencyCount.curCost > CurrencyCount.currency:
 		buy_minion.set_disabled(true)
 	elif CurrencyCount.curCost <= CurrencyCount.currency:
 		buy_minion.set_disabled(false)
 		
+	if CurrencyCount.unitUpgradeCost > CurrencyCount.currency:
+		buy_upgrade.set_disabled(true)
+	elif CurrencyCount.unitUpgradeCost <= CurrencyCount.currency:
+		buy_upgrade.set_disabled(false)
+	
 	if CurrencyCount.playerUpgradeCost > CurrencyCount.currency:
 		buy_player.set_disabled(true)
 	elif CurrencyCount.playerUpgradeCost <= CurrencyCount.currency:
@@ -196,6 +208,9 @@ func buyDisable():
 
 
 func _on_buy_minion_pressed():
+	buyMinion()
+	
+func buyMinion():
 	#spawn unit
 	CurrencyCount.currency -= CurrencyCount.curCost
 	# this needs a better equation
@@ -207,6 +222,10 @@ func _on_buy_minion_pressed():
 
 
 func _on_buy_upgrade_pressed():
+	buyUpgrade()
+
+
+func buyUpgrade():
 	#upgrade unit
 	CurrencyCount.currency -= CurrencyCount.unitUpgradeCost
 	#These should probably be fixed costs, and increase based on specific tiers
@@ -218,6 +237,9 @@ func _on_buy_upgrade_pressed():
 
 
 func _on_buy_player_pressed():
+	buyPlayer()
+
+func buyPlayer():
 	#upgrade player
 	CurrencyCount.currency -= CurrencyCount.playerUpgradeCost
 	#Same deal, these should be flat costs, that have set values based on the 
