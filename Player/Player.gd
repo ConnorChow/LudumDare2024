@@ -9,14 +9,17 @@ var curHealth : float
 @export var damage : float = 8
 
 @onready var sprite : Sprite2D = $Sprite2D
-@onready var hitBox = $UiNodes/ColorRect
+@onready var hitBox = $UiNodes/hitBox
 @onready var hitColor_timer = $UiNodes/ColorRect/hitTimer
 
-# Get the gravity from the pr$Sprite2Doject settings to be synced with RigidBody nodes.
+var canBuy : bool = false
+
+
 
 func _ready():
 	curHealth = maxHealth
 	hitBox.visible = false
+	CurrencyCount.currency = 0
 
 
 
@@ -48,9 +51,7 @@ func updateHealth(val : float):
 func takeDamage(damage):
 	hitBox.visible = true
 	hitColor_timer.start()
-	
-
-
+	updateHealth(damage)
 
 
 func _on_hit_timer_timeout():
