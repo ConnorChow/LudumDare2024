@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0qrdderuwrjf"]
+[gd_scene load_steps=8 format=3 uid="uid://c0qrdderuwrjf"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_65vep"]
 [ext_resource type="Texture2D" uid="uid://b80rkqf2yl0ua" path="res://Assets/placeHolder.png" id="1_sdcbo"]
+[ext_resource type="Texture2D" uid="uid://j8tv3gamxbfg" path="res://Assets/placeHolder2.png" id="3_0ykis"]
 [ext_resource type="Texture2D" uid="uid://dfx0pakajpiw1" path="res://Assets/lightPlaceHolder.png" id="3_xw4s4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nxp3"]
@@ -24,10 +25,16 @@ maxSpeed = 80.0
 position = Vector2(-1.5, 0.5)
 shape = SubResource("RectangleShape2D_0nxp3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="mainSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_sdcbo")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 16)
+
+[node name="recallSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_0ykis")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 20)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -89,5 +96,9 @@ texture = ExtResource("3_xw4s4")
 wait_time = 0.3
 one_shot = true
 
+[node name="recallTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="timeout" from="UiNodes/hitBox/hitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="grabTimer" to="." method="_on_grab_timer_timeout"]
+[connection signal="timeout" from="recallTimer" to="." method="_on_recall_timer_timeout"]
