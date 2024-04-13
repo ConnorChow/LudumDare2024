@@ -33,10 +33,15 @@ var canBuy : bool = false
 @onready var cur_player_label = $UiNodes/buyMenu/curPlayerLabel
 @onready var buy_player = $UiNodes/buyMenu/buyPlayer
 
-#placeable light objects
-@onready var placeLight = preload("res://Objects/lightPlace.tscn")
-@onready var place_light = $placeLight
+#placeable objects
+@onready var place_wheel = $UiNodes/placeWheel
+@onready var light_button = $UiNodes/placeWheel/Light/LightButton
+@onready var battle_tower_button = $UiNodes/placeWheel/BattleTower/BattleTowerButton
+
 var canPlace : bool = true
+@onready var placeTimer = $placeTimer
+@onready var placeLight = preload("res://Objects/lightPlace.tscn")
+@onready var battleStation = preload("res://Objects/battleStation.tscn")
 
 
 # a short timer to prevent weirdness associated with spam picking up and droppuing
@@ -116,12 +121,14 @@ func get_input():
 				get_parent().add_child(l)
 				CurrencyCount.currency -=1
 				updateCur()
-				place_light.start()
+				placeTimer.start()
 				canPlace = false
 	if Input.is_action_just_pressed("recall"):
 		if heldObject != null:
 				heldObject.reparent(get_parent())
 				dropItem()
+	if Input.is_action_just_pressed("wheelToggle"):
+		place_wheel.visible = !place_wheel.visible
 	
 	if Input.is_action_just_pressed("grab"):
 		if canGrab:
@@ -256,11 +263,12 @@ func buyPlayer():
 	cur_upgrade_label.set_text("$" + str(CurrencyCount.playerUpgradeCost))  
 	updateCur()
 
+func placeObject(type):
+	
+	pass
 
 
 
-
-
-func _on_place_light_timeout():
+func _on_place_timer_timeout():
 	canPlace = true
 

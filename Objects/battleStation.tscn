@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2tamha3466kh"]
+
+[ext_resource type="Texture2D" uid="uid://j8tv3gamxbfg" path="res://Assets/placeHolder2.png" id="1_eipku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbtgv"]
+size = Vector2(16, 16)
+
+[node name="BattleStation" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_eipku")
+region_enabled = true
+region_rect = Rect2(40, 0, 20, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fbtgv")

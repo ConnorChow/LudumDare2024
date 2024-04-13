@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0qrdderuwrjf"]
+[gd_scene load_steps=11 format=3 uid="uid://c0qrdderuwrjf"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_65vep"]
 [ext_resource type="Texture2D" uid="uid://b80rkqf2yl0ua" path="res://Assets/placeHolder.png" id="1_sdcbo"]
@@ -27,6 +27,10 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+
+[sub_resource type="SphereMesh" id="SphereMesh_kil61"]
+radius = 35.0
+height = 70.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wk7ve"]
 
@@ -184,6 +188,50 @@ theme_override_font_sizes/font_size = 10
 disabled = true
 text = "Upgrade Player"
 
+[node name="placeWheel" type="Control" parent="UiNodes"]
+use_parent_material = true
+anchors_preset = 0
+offset_left = 1335.0
+offset_top = 751.0
+offset_right = 1375.0
+offset_bottom = 791.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="UiNodes/placeWheel"]
+modulate = Color(0.443137, 0.156863, 0.137255, 0.392157)
+use_parent_material = true
+position = Vector2(16, -24)
+mesh = SubResource("SphereMesh_kil61")
+
+[node name="Light" type="Sprite2D" parent="UiNodes/placeWheel"]
+use_parent_material = true
+position = Vector2(16, -59)
+texture = ExtResource("3_0ykis")
+region_enabled = true
+region_rect = Rect2(20, 0, 20, 20)
+
+[node name="LightButton" type="Button" parent="UiNodes/placeWheel/Light"]
+modulate = Color(1, 1, 1, 0)
+use_parent_material = true
+offset_left = -8.0
+offset_top = -5.0
+offset_bottom = 3.0
+scale = Vector2(1.99982, 1.99982)
+
+[node name="BattleTower" type="Sprite2D" parent="UiNodes/placeWheel"]
+use_parent_material = true
+position = Vector2(16, 11)
+texture = ExtResource("3_0ykis")
+region_enabled = true
+region_rect = Rect2(40, 0, 20, 20)
+
+[node name="BattleTowerButton" type="Button" parent="UiNodes/placeWheel/BattleTower"]
+modulate = Color(1, 1, 1, 0)
+use_parent_material = true
+offset_left = -8.0
+offset_top = -11.0
+offset_bottom = -3.0
+scale = Vector2(2.00059, 2.00059)
+
 [node name="grabBox" type="Area2D" parent="."]
 position = Vector2(-1, 0)
 rotation = 0.0377486
@@ -210,7 +258,7 @@ wait_time = 5.0
 wait_time = 0.3
 one_shot = true
 
-[node name="placeLight" type="Timer" parent="."]
+[node name="placeTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="UiNodes/hitBox/hitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="pressed" from="UiNodes/buyMenu/buyMinion" to="." method="_on_buy_minion_pressed"]
@@ -219,4 +267,4 @@ one_shot = true
 [connection signal="timeout" from="grabTimer" to="." method="_on_grab_timer_timeout"]
 [connection signal="timeout" from="recallTimer" to="." method="_on_recall_timer_timeout"]
 [connection signal="timeout" from="iFrames" to="." method="_on_i_frames_timeout"]
-[connection signal="timeout" from="placeLight" to="." method="_on_place_light_timeout"]
+[connection signal="timeout" from="placeTimer" to="." method="_on_place_timer_timeout"]
