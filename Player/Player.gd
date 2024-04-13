@@ -217,4 +217,4 @@ func _on_buy_player_pressed():
 	#current units? Testing needed though obv
 	CurrencyCount.playerUpgradeCost = floor(CurrencyCount.playerUpgradeCost * 1.5)
 	cur_upgrade_label.set_text("$" + str(CurrencyCount.playerUpgradeCost))  
-	pass # Replace with function body.
+	updateCur()
