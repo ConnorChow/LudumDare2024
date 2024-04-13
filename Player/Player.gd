@@ -103,19 +103,13 @@ func get_input():
 	if Input.is_action_just_pressed("recall"):
 		if heldObject != null:
 				heldObject.reparent(get_parent())
-				heldObject = null
-				modMaxSpeed = maxSpeed
-				modSpeed = speed
+				dropItem()
 	
 	if Input.is_action_just_pressed("grab"):
 		if canGrab:
-			canGrab = false
-			grab_timer.start()
 			if heldObject != null:
 				heldObject.reparent(get_parent())
-				heldObject = null
-				modMaxSpeed = maxSpeed
-				modSpeed = speed
+				dropItem()
 			else:
 				var i = grab_box.get_overlapping_areas()
 				for g in i:
@@ -154,12 +148,7 @@ func _on_recall_timer_timeout():
 
 func updateCur():
 	money.set_text("$" +str(CurrencyCount.currency)) 
-	heldObject = null
-	modMaxSpeed = maxSpeed
-	modSpeed = speed
-	canGrab = false
-	grab_timer.start()
-	
+
 	if CurrencyCount.curCost > CurrencyCount.currency:
 		buy_minion.set_disabled(true)
 	elif CurrencyCount.curCost <= CurrencyCount.currency:
@@ -176,6 +165,12 @@ func updateCur():
 		buy_player.set_disabled(false)
 	
 
+func dropItem():
+	modMaxSpeed = maxSpeed
+	modSpeed = speed
+	heldObject = null
+	canGrab = false
+	grab_timer.start()
 
 func updateHealth(val : float):
 	curHealth += val
@@ -188,28 +183,24 @@ func takeDamage(dmg):
 	hitColor_timer.start()
 	updateHealth(-dmg)
 
-
 func _on_hit_timer_timeout():
 	hitBox.visible = false
 
 
 func _on_grab_timer_timeout():
 	canGrab = true
-	
+
 
 func buyEnable():
 	canBuy = true
 	buy_menu.visible = true
 
-
 func buyDisable():
 	canBuy = false
 	buy_menu.visible = false
 
-
 func _on_buy_minion_pressed():
 	buyMinion()
-	
 func buyMinion():
 	#spawn unit
 	CurrencyCount.currency -= CurrencyCount.curCost
@@ -219,12 +210,8 @@ func buyMinion():
 	cur_cost_label.set_text("$" + str(CurrencyCount.curCost))  
 	updateCur()
 
-
-
 func _on_buy_upgrade_pressed():
 	buyUpgrade()
-
-
 func buyUpgrade():
 	#upgrade unit
 	CurrencyCount.currency -= CurrencyCount.unitUpgradeCost
@@ -234,11 +221,8 @@ func buyUpgrade():
 	cur_upgrade_label.set_text("$" + str(CurrencyCount.unitUpgradeCost))  
 	updateCur()
 
-
-
 func _on_buy_player_pressed():
 	buyPlayer()
-
 func buyPlayer():
 	#upgrade player
 	CurrencyCount.currency -= CurrencyCount.playerUpgradeCost

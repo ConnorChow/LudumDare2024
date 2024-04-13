@@ -22,5 +22,6 @@ func _input(_event):
 func _on_currency_detector_area_entered(area):
 	CurrencyCount.currency += 1
 	player.updateCur()
+	player.dropItem()
 	area.queue_free()
 	
