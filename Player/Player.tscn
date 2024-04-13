@@ -52,6 +52,14 @@ metadata/_edit_use_anchors_ = true
 wait_time = 0.1
 one_shot = true
 
+[node name="Money" type="Label" parent="UiNodes"]
+layout_mode = 1
+offset_left = 1072.0
+offset_top = 656.0
+offset_right = 1112.0
+offset_bottom = 679.0
+text = "00"
+
 [node name="grabBox" type="Area2D" parent="."]
 position = Vector2(-1, 0)
 rotation = 0.0377486

@@ -14,18 +14,19 @@ var curHealth : float
 @onready var hitColor_timer = $UiNodes/hitBox/hitTimer
 @onready var grab_box = $grabBox
 @onready var hold_point = $holdPoint
+@onready var money = $UiNodes/Money
+
 
 var heldObject : Object = null
 
 var canBuy : bool = false
 
-
+signal makeMoneyGoUp
 
 func _ready():
 	curHealth = maxHealth
 	hitBox.visible = false
 	CurrencyCount.currency = 0
-
 
 
 func _physics_process(delta):
@@ -63,6 +64,9 @@ func get_input():
 					g.global_position = hold_point.global_position
 					break
 		
+
+func updateCur():
+	money.set_text(str(CurrencyCount.currency)) 
 
 
 func updateHealth(val : float):
