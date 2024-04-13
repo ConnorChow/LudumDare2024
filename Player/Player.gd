@@ -32,8 +32,12 @@ var canBuy : bool = false
 #buy player upgrades
 @onready var cur_player_label = $UiNodes/buyMenu/curPlayerLabel
 @onready var buy_player = $UiNodes/buyMenu/buyPlayer
+
 #placeable light objects
 @onready var placeLight = preload("res://Objects/lightPlace.tscn")
+@onready var place_light = $placeLight
+var canPlace : bool = true
+
 
 # a short timer to prevent weirdness associated with spam picking up and droppuing
 #items
@@ -105,9 +109,15 @@ func get_input():
 			if CurrencyCount.playerUpgradeCost <= CurrencyCount.currency:
 				buyPlayer()
 	if Input.is_action_just_pressed("light"):
-		var l = placeLight.instantiate()
-		l.global_position = global_position
-		get_parent().add_child(l)
+		if CurrencyCount.currency > 0:
+			if canPlace:
+				var l = placeLight.instantiate()
+				l.global_position = global_position
+				get_parent().add_child(l)
+				CurrencyCount.currency -=1
+				updateCur()
+				place_light.start()
+				canPlace = false
 	if Input.is_action_just_pressed("recall"):
 		if heldObject != null:
 				heldObject.reparent(get_parent())
@@ -248,4 +258,9 @@ func buyPlayer():
 
 
 
+
+
+
+func _on_place_light_timeout():
+	canPlace = true
 

@@ -210,6 +210,8 @@ wait_time = 5.0
 wait_time = 0.3
 one_shot = true
 
+[node name="placeLight" type="Timer" parent="."]
+
 [connection signal="timeout" from="UiNodes/hitBox/hitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="pressed" from="UiNodes/buyMenu/buyMinion" to="." method="_on_buy_minion_pressed"]
 [connection signal="pressed" from="UiNodes/buyMenu/buyUpgrade" to="." method="_on_buy_upgrade_pressed"]
@@ -217,3 +219,4 @@ one_shot = true
 [connection signal="timeout" from="grabTimer" to="." method="_on_grab_timer_timeout"]
 [connection signal="timeout" from="recallTimer" to="." method="_on_recall_timer_timeout"]
 [connection signal="timeout" from="iFrames" to="." method="_on_i_frames_timeout"]
+[connection signal="timeout" from="placeLight" to="." method="_on_place_light_timeout"]
