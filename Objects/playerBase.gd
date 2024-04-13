@@ -13,7 +13,10 @@ func _on_body_exited(body):
 
 
 
-func _on_currency_detector_body_entered(body):
-	CurrencyCount.currency += body.worth
 
 
+
+func _on_currency_detector_area_entered(area):
+	CurrencyCount.currency += 1
+	CurrencyCount.updateCur()
+	area.queue_free()

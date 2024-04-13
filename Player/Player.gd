@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @export var speed : float = 10.0
+var modSpeed : float
 @export var maxSpeed : float = 60
 @export var maxHealth : float = 30
 var curHealth : float
@@ -11,6 +12,10 @@ var curHealth : float
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var hitBox = $UiNodes/hitBox
 @onready var hitColor_timer = $UiNodes/hitBox/hitTimer
+@onready var grab_box = $grabBox
+@onready var hold_point = $holdPoint
+
+var heldObject : Object = null
 
 var canBuy : bool = false
 
@@ -44,7 +49,22 @@ func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity += input_direction * speed
 	
-	
+	if Input.is_action_just_pressed("grab"):
+		
+		if heldObject != null:
+			heldObject.reparent(get_parent())
+			heldObject = null
+		else:
+			var i = grab_box.get_overlapping_areas ( )
+			for g in i:
+				if g.is_in_group("Grab"):
+					g.reparent(self)
+					heldObject = g
+					g.global_position = hold_point.global_position
+					break
+		
+
+
 func updateHealth(val : float):
 	curHealth += val
 

@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3lixqglawbhi"]
+[gd_scene load_steps=7 format=3 uid="uid://d3lixqglawbhi"]
 
 [ext_resource type="Texture2D" uid="uid://b80rkqf2yl0ua" path="res://Assets/placeHolder.png" id="1_u32q8"]
 [ext_resource type="PackedScene" uid="uid://c0qrdderuwrjf" path="res://Player/Player.tscn" id="2_y8ry4"]
+[ext_resource type="PackedScene" uid="uid://pstoogj43le5" path="res://Objects/currencyCollectSmall.tscn" id="3_ne0fx"]
+[ext_resource type="PackedScene" uid="uid://c84pjnwkgvdxr" path="res://Objects/playerBase.tscn" id="4_4cb53"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vwju6"]
 texture = ExtResource("1_u32q8")
@@ -30,3 +32,9 @@ layer_0/tile_data = PackedInt32Array(9, 0, 0, 10, 0, 0, 65547, 0, 0, 65548, 0, 0
 
 [node name="Player" parent="." instance=ExtResource("2_y8ry4")]
 position = Vector2(79, 67)
+
+[node name="currencyCollectSmall" parent="." instance=ExtResource("3_ne0fx")]
+position = Vector2(48, 77)
+
+[node name="playerBase" parent="." instance=ExtResource("4_4cb53")]
+position = Vector2(133, 62)
