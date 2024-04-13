@@ -92,7 +92,7 @@ offset_left = 982.0
 offset_top = 610.0
 offset_right = 1022.0
 offset_bottom = 633.0
-text = "0"
+text = "$0"
 
 [node name="healthBar" type="ProgressBar" parent="UiNodes"]
 use_parent_material = true
@@ -161,6 +161,29 @@ theme_override_font_sizes/font_size = 10
 disabled = true
 text = "Upgrade Minions"
 
+[node name="curPlayerLabel" type="Label" parent="UiNodes/buyMenu"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1427.0
+offset_top = 868.0
+offset_right = 1467.0
+offset_bottom = 891.0
+theme_override_font_sizes/font_size = 10
+text = "$8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buyPlayer" type="Button" parent="UiNodes/buyMenu"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1403.0
+offset_top = 884.0
+offset_right = 1486.0
+offset_bottom = 906.0
+theme_override_font_sizes/font_size = 10
+disabled = true
+text = "Upgrade Player"
+
 [node name="grabBox" type="Area2D" parent="."]
 position = Vector2(-1, 0)
 rotation = 0.0377486
@@ -186,5 +209,6 @@ wait_time = 5.0
 [connection signal="timeout" from="UiNodes/hitBox/hitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="pressed" from="UiNodes/buyMenu/buyMinion" to="." method="_on_buy_minion_pressed"]
 [connection signal="pressed" from="UiNodes/buyMenu/buyUpgrade" to="." method="_on_buy_upgrade_pressed"]
+[connection signal="pressed" from="UiNodes/buyMenu/buyPlayer" to="." method="_on_buy_player_pressed"]
 [connection signal="timeout" from="grabTimer" to="." method="_on_grab_timer_timeout"]
 [connection signal="timeout" from="recallTimer" to="." method="_on_recall_timer_timeout"]

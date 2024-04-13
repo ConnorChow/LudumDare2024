@@ -29,6 +29,9 @@ var curHealth : float
 #buy unit upgrades
 @onready var cur_upgrade_label = $UiNodes/buyMenu/curUpgradeLabel
 @onready var buy_upgrade = $UiNodes/buyMenu/buyUpgrade
+#buy player upgrades
+@onready var cur_player_label = $UiNodes/buyMenu/curPlayerLabel
+@onready var buy_player = $UiNodes/buyMenu/buyPlayer
 
 
 
@@ -133,7 +136,7 @@ func _on_recall_timer_timeout():
 
 
 func updateCur():
-	money.set_text(str(CurrencyCount.currency)) 
+	money.set_text("$" +str(CurrencyCount.currency)) 
 	heldObject = null
 	modMaxSpeed = maxSpeed
 	modSpeed = speed
@@ -144,11 +147,15 @@ func updateCur():
 	elif CurrencyCount.unitUpgradeCost <= CurrencyCount.currency:
 		buy_upgrade.set_disabled(false)
 	
-	
 	if CurrencyCount.curCost > CurrencyCount.currency:
 		buy_minion.set_disabled(true)
 	elif CurrencyCount.curCost <= CurrencyCount.currency:
 		buy_minion.set_disabled(false)
+		
+	if CurrencyCount.playerUpgradeCost > CurrencyCount.currency:
+		buy_player.set_disabled(true)
+	elif CurrencyCount.playerUpgradeCost <= CurrencyCount.currency:
+		buy_player.set_disabled(false)
 	
 
 
@@ -200,3 +207,14 @@ func _on_buy_upgrade_pressed():
 	cur_upgrade_label.set_text("$" + str(CurrencyCount.unitUpgradeCost))  
 	updateCur()
 
+
+
+func _on_buy_player_pressed():
+	#upgrade player
+	CurrencyCount.currency -= CurrencyCount.playerUpgradeCost
+	#Same deal, these should be flat costs, that have set values based on the 
+	#specific upgrade. I don't think we need to scale these based on the players
+	#current units? Testing needed though obv
+	CurrencyCount.playerUpgradeCost = floor(CurrencyCount.playerUpgradeCost * 1.5)
+	cur_upgrade_label.set_text("$" + str(CurrencyCount.playerUpgradeCost))  
+	pass # Replace with function body.

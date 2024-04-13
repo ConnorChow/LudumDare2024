@@ -5,3 +5,5 @@ var currency : int = 0
 var curCost : int = 2
 
 var unitUpgradeCost : int = 20
+
+var playerUpgradeCost : int =8
