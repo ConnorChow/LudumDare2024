@@ -10,7 +10,7 @@ var curHealth : float
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var hitBox = $UiNodes/hitBox
-@onready var hitColor_timer = $UiNodes/ColorRect/hitTimer
+@onready var hitColor_timer = $UiNodes/hitBox/hitTimer
 
 var canBuy : bool = false
 
