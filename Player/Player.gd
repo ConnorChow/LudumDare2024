@@ -1,27 +1,23 @@
 extends CharacterBody2D
 
 
+var input_direction :Vector2
 @export var speed : float = 10.0
 var modSpeed : float = 10.0
 @export var maxSpeed : float = 60
 var modMaxSpeed : float = 60
 @export var maxHealth : float = 30
 var curHealth : float
-
 @export var damage : float = 8
 
 @onready var sprite : Sprite2D = $mainSprite
-@onready var recall_sprite = $recallSprite
 @onready var hitBox = $UiNodes/hitBox
 @onready var hitColor_timer = $UiNodes/hitBox/hitTimer
-@onready var grab_box = $grabBox
-@onready var hold_point = $holdPoint
 @onready var money = $UiNodes/Money
-@onready var grab_timer = $grabTimer
-@onready var recall_timer = $recallTimer
 @onready var health_bar = $UiNodes/healthBar
 
 #upgrades
+var canBuy : bool = false
 @onready var buy_menu = $UiNodes/buyMenu
 #purchase new units
 @onready var buy_minion = $UiNodes/buyMenu/buyMinion
@@ -33,20 +29,30 @@ var curHealth : float
 @onready var cur_player_label = $UiNodes/buyMenu/curPlayerLabel
 @onready var buy_player = $UiNodes/buyMenu/buyPlayer
 
-
-
-
-var input_direction :Vector2
+# a short timer to prevent weirdness associated with spam picking up and droppuing
+#items
+@onready var grab_timer = $grabTimer
+@onready var grab_box = $grabBox
+@onready var hold_point = $holdPoint
 var heldObject : Object = null
-
-var canBuy : bool = false
 var canGrab : bool = true
+
+#duration that the recall takes
+@onready var recall_timer = $recallTimer
+#the animation that the sprite takes on during the recall. will need to be changed
+@onready var recall_sprite = $recallSprite
 var recalling : bool = false
+#home position gets set when the player laods in the game and touches the base.
+#the base calls the players function and tells it it's position. 
+#its bad, but it works, and the base can be moved during runtime
 var homePosition : Vector2
 
 func _ready():
 	curHealth = maxHealth
 	hitBox.visible = false
+	#this sets the currency to 0 on load, to prevent save abuse associated with 
+	#the global script
+	#may need a function to reset all upgrades to 0
 	CurrencyCount.currency = 0
 	modMaxSpeed = maxSpeed
 	modSpeed = speed
@@ -161,6 +167,8 @@ func updateCur():
 
 func updateHealth(val : float):
 	curHealth += val
+	if curHealth > maxHealth:
+		curHealth = maxHealth
 	health_bar.value = curHealth
 
 func takeDamage(dmg):
