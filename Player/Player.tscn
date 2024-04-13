@@ -264,6 +264,8 @@ one_shot = true
 [connection signal="pressed" from="UiNodes/buyMenu/buyMinion" to="." method="_on_buy_minion_pressed"]
 [connection signal="pressed" from="UiNodes/buyMenu/buyUpgrade" to="." method="_on_buy_upgrade_pressed"]
 [connection signal="pressed" from="UiNodes/buyMenu/buyPlayer" to="." method="_on_buy_player_pressed"]
+[connection signal="pressed" from="UiNodes/placeWheel/Light/LightButton" to="." method="_on_light_button_pressed"]
+[connection signal="pressed" from="UiNodes/placeWheel/BattleTower/BattleTowerButton" to="." method="_on_battle_tower_button_pressed"]
 [connection signal="timeout" from="grabTimer" to="." method="_on_grab_timer_timeout"]
 [connection signal="timeout" from="recallTimer" to="." method="_on_recall_timer_timeout"]
 [connection signal="timeout" from="iFrames" to="." method="_on_i_frames_timeout"]

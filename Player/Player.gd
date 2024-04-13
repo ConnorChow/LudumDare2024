@@ -34,6 +34,7 @@ var canBuy : bool = false
 @onready var buy_player = $UiNodes/buyMenu/buyPlayer
 
 #placeable objects
+var wheelOpen : bool = false
 @onready var place_wheel = $UiNodes/placeWheel
 @onready var light_button = $UiNodes/placeWheel/Light/LightButton
 @onready var battle_tower_button = $UiNodes/placeWheel/BattleTower/BattleTowerButton
@@ -113,22 +114,26 @@ func get_input():
 		if Input.is_action_just_pressed("3"):
 			if CurrencyCount.playerUpgradeCost <= CurrencyCount.currency:
 				buyPlayer()
-	if Input.is_action_just_pressed("light"):
-		if CurrencyCount.currency > 0:
-			if canPlace:
-				var l = placeLight.instantiate()
-				l.global_position = global_position
-				get_parent().add_child(l)
-				CurrencyCount.currency -=1
-				updateCur()
-				placeTimer.start()
-				canPlace = false
+	elif !canBuy:
+		if wheelOpen:
+			if Input.is_action_just_pressed("1"):
+				placeObject("Light")
+			if Input.is_action_just_pressed("2"):
+				placeObject("Battle")
+			if Input.is_action_just_pressed("3"):
+				pass
+			if Input.is_action_just_pressed("4"):
+				pass
+			if Input.is_action_just_pressed("5"):
+				pass
+
 	if Input.is_action_just_pressed("recall"):
 		if heldObject != null:
 				heldObject.reparent(get_parent())
 				dropItem()
 	if Input.is_action_just_pressed("wheelToggle"):
 		place_wheel.visible = !place_wheel.visible
+		wheelOpen = !wheelOpen
 	
 	if Input.is_action_just_pressed("grab"):
 		if canGrab:
@@ -224,6 +229,8 @@ func _on_grab_timer_timeout():
 func buyEnable():
 	canBuy = true
 	buy_menu.visible = true
+	wheelOpen = false
+	place_wheel.visible = false
 
 func buyDisable():
 	canBuy = false
@@ -263,12 +270,43 @@ func buyPlayer():
 	cur_upgrade_label.set_text("$" + str(CurrencyCount.playerUpgradeCost))  
 	updateCur()
 
+#you might want to improve this to use the tilemap, so objects behave properly
 func placeObject(type):
-	
-	pass
+	match type:
+		"Light":
+			if CurrencyCount.currency > 0:
+				if canPlace:
+					var l = placeLight.instantiate()
+					l.global_position = global_position
+					get_parent().add_child(l)
+					CurrencyCount.currency -=1
+					updateCur()
+					placeTimer.start()
+					canPlace = false
+		"Battle":
+			if CurrencyCount.currency > 4:
+				if canPlace:
+					var b = battleStation.instantiate()
+					b.global_position = global_position
+					get_parent().add_child(b)
+					CurrencyCount.currency -=5
+					updateCur()
+					placeTimer.start()
+					canPlace = false
+
 
 
 
 func _on_place_timer_timeout():
 	canPlace = true
+
+
+
+func _on_light_button_pressed():
+	placeObject("Light")
+
+
+
+func _on_battle_tower_button_pressed():
+	placeObject("Battle")
 
