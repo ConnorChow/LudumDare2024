@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0qrdderuwrjf"]
+
+[ext_resource type="Texture2D" uid="uid://b80rkqf2yl0ua" path="res://Assets/placeHolder.png" id="1_sdcbo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0nxp3"]
+size = Vector2(7, 15)
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0.5)
+shape = SubResource("RectangleShape2D_0nxp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sdcbo")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 16)
