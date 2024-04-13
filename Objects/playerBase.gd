@@ -23,5 +23,4 @@ func _on_currency_detector_area_entered(area):
 	CurrencyCount.currency += 1
 	player.updateCur()
 	area.queue_free()
-	if CurrencyCount.curCost <= CurrencyCount.currency:
-		player.buy_minion.set_disabled(false)
+	

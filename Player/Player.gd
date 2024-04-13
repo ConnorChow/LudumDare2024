@@ -20,10 +20,15 @@ var curHealth : float
 @onready var grab_timer = $grabTimer
 @onready var recall_timer = $recallTimer
 @onready var health_bar = $UiNodes/healthBar
+
+#upgrades
 @onready var buy_menu = $UiNodes/buyMenu
+#purchase new units
 @onready var buy_minion = $UiNodes/buyMenu/buyMinion
 @onready var cur_cost_label = $UiNodes/buyMenu/curCostLabel
-
+#buy unit upgrades
+@onready var cur_upgrade_label = $UiNodes/buyMenu/curUpgradeLabel
+@onready var buy_upgrade = $UiNodes/buyMenu/buyUpgrade
 
 
 
@@ -134,6 +139,17 @@ func updateCur():
 	modSpeed = speed
 	canGrab = false
 	grab_timer.start()
+	if CurrencyCount.unitUpgradeCost > CurrencyCount.currency:
+		buy_upgrade.set_disabled(true)
+	elif CurrencyCount.unitUpgradeCost <= CurrencyCount.currency:
+		buy_upgrade.set_disabled(false)
+	
+	
+	if CurrencyCount.curCost > CurrencyCount.currency:
+		buy_minion.set_disabled(true)
+	elif CurrencyCount.curCost <= CurrencyCount.currency:
+		buy_minion.set_disabled(false)
+	
 
 
 func updateHealth(val : float):
@@ -167,9 +183,20 @@ func buyDisable():
 func _on_buy_minion_pressed():
 	#spawn unit
 	CurrencyCount.currency -= CurrencyCount.curCost
+	# this needs a better equation
+	#when a unit dies, reduce the curcost
 	CurrencyCount.curCost = floor(CurrencyCount.curCost * 1.5)
 	cur_cost_label.set_text("$" + str(CurrencyCount.curCost))  
-	if CurrencyCount.curCost > CurrencyCount.currency:
-		buy_minion.set_disabled(true)
 	updateCur()
-	pass # Replace with function body.
+
+
+
+func _on_buy_upgrade_pressed():
+	#upgrade unit
+	CurrencyCount.currency -= CurrencyCount.unitUpgradeCost
+	#These should probably be fixed costs, and increase based on specific tiers
+	#maybe even scale on the quantity of units that the player has
+	CurrencyCount.unitUpgradeCost = floor(CurrencyCount.unitUpgradeCost * 1.5)
+	cur_upgrade_label.set_text("$" + str(CurrencyCount.unitUpgradeCost))  
+	updateCur()
+
