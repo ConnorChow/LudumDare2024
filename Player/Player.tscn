@@ -107,6 +107,36 @@ value = 50.0
 fill_mode = 3
 show_percentage = false
 
+[node name="buyMenu" type="Control" parent="UiNodes"]
+use_parent_material = true
+anchors_preset = 0
+offset_left = 20.0
+offset_top = -13.0
+offset_right = 60.0
+offset_bottom = 27.0
+
+[node name="curCostLabel" type="Label" parent="UiNodes/buyMenu"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 999.0
+offset_top = 872.0
+offset_right = 1039.0
+offset_bottom = 895.0
+theme_override_font_sizes/font_size = 10
+text = "$2"
+horizontal_alignment = 1
+
+[node name="buyMinion" type="Button" parent="UiNodes/buyMenu"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 982.0
+offset_top = 886.0
+offset_right = 1059.0
+offset_bottom = 908.0
+theme_override_font_sizes/font_size = 10
+disabled = true
+text = "Spawn Minion"
+
 [node name="grabBox" type="Area2D" parent="."]
 position = Vector2(-1, 0)
 rotation = 0.0377486
@@ -130,5 +160,6 @@ one_shot = true
 wait_time = 5.0
 
 [connection signal="timeout" from="UiNodes/hitBox/hitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="pressed" from="UiNodes/buyMenu/buyMinion" to="." method="_on_buy_minion_pressed"]
 [connection signal="timeout" from="grabTimer" to="." method="_on_grab_timer_timeout"]
 [connection signal="timeout" from="recallTimer" to="." method="_on_recall_timer_timeout"]

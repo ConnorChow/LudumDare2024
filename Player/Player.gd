@@ -20,6 +20,10 @@ var curHealth : float
 @onready var grab_timer = $grabTimer
 @onready var recall_timer = $recallTimer
 @onready var health_bar = $UiNodes/healthBar
+@onready var buy_menu = $UiNodes/buyMenu
+@onready var buy_minion = $UiNodes/buyMenu/buyMinion
+@onready var cur_cost_label = $UiNodes/buyMenu/curCostLabel
+
 
 
 
@@ -40,6 +44,7 @@ func _ready():
 	modSpeed = speed
 	health_bar.max_value = maxHealth
 	health_bar.value = curHealth
+	buy_menu.visible = false
 
 
 func _physics_process(delta):
@@ -147,6 +152,24 @@ func _on_hit_timer_timeout():
 
 func _on_grab_timer_timeout():
 	canGrab = true
+	
+
+func buyEnable():
+	canBuy = true
+	buy_menu.visible = true
 
 
+func buyDisable():
+	canBuy = false
+	buy_menu.visible = false
 
+
+func _on_buy_minion_pressed():
+	#spawn unit
+	CurrencyCount.currency -= CurrencyCount.curCost
+	CurrencyCount.curCost = floor(CurrencyCount.curCost * 1.5)
+	cur_cost_label.set_text("$" + str(CurrencyCount.curCost))  
+	if CurrencyCount.curCost > CurrencyCount.currency:
+		buy_minion.set_disabled(true)
+	updateCur()
+	pass # Replace with function body.
