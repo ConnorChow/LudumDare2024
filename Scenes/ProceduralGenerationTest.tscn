@@ -1,19 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5yvbfveifhb8"]
 
-[ext_resource type="Script" path="res://Scenes/TerrainSystem.gd" id="2_1bf7g"]
 [ext_resource type="PackedScene" uid="uid://c0qrdderuwrjf" path="res://Player/Player.tscn" id="2_2gu8h"]
-[ext_resource type="TileSet" uid="uid://cdlpnakyx60up" path="res://Map/PlaceholderTileSet.tres" id="2_gc4x5"]
+[ext_resource type="Script" path="res://Scenes/AntEntities.gd" id="2_gowb7"]
+[ext_resource type="ArrayMesh" uid="uid://eg54cq5ywevk" path="res://Simulation/Meshing/OrganismMesh.res" id="3_ws0sk"]
 
 [node name="Node" type="Node"]
 
-[node name="Node" type="Node" parent="."]
-script = ExtResource("2_1bf7g")
-cell_distance_limit = Vector2i(32, 32)
-noise_threshold = 0.0
-noise_offset = 10.0
-tile_set = ExtResource("2_gc4x5")
-
-[node name="TerrainMap" type="TileMap" parent="Node"]
-format = 2
-
 [node name="Player" parent="." instance=ExtResource("2_2gu8h")]
+
+[node name="AntEntities" type="MultiMeshInstance2D" parent="."]
+script = ExtResource("2_gowb7")
+mesh = ExtResource("3_ws0sk")
