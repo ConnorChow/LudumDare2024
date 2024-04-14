@@ -299,18 +299,11 @@ func placeObject(type):
 					placeTimer.start()
 					canPlace = false
 
-
-
-
 func _on_place_timer_timeout():
 	canPlace = true
 
-
-
 func _on_light_button_pressed():
 	placeObject("Light")
-
-
 
 func _on_battle_tower_button_pressed():
 	placeObject("Battle")
