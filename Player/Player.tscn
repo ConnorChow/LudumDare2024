@@ -94,10 +94,10 @@ one_shot = true
 [node name="Money" type="Label" parent="UiNodes"]
 use_parent_material = true
 layout_mode = 1
-offset_left = 982.0
-offset_top = 610.0
-offset_right = 1022.0
-offset_bottom = 633.0
+offset_left = 1068.0
+offset_top = 624.0
+offset_right = 1108.0
+offset_bottom = 647.0
 text = "$0"
 
 [node name="healthBar" type="ProgressBar" parent="UiNodes"]
@@ -124,9 +124,9 @@ offset_bottom = 27.0
 [node name="curCostLabel" type="Label" parent="UiNodes/buyMenu"]
 use_parent_material = true
 layout_mode = 0
-offset_left = 1003.0
+offset_left = 1059.0
 offset_top = 868.0
-offset_right = 1043.0
+offset_right = 1099.0
 offset_bottom = 891.0
 theme_override_font_sizes/font_size = 10
 text = "$2"
@@ -136,9 +136,9 @@ vertical_alignment = 1
 [node name="buyMinion" type="Button" parent="UiNodes/buyMenu"]
 use_parent_material = true
 layout_mode = 0
-offset_left = 987.0
+offset_left = 1043.0
 offset_top = 884.0
-offset_right = 1064.0
+offset_right = 1120.0
 offset_bottom = 906.0
 theme_override_font_sizes/font_size = 10
 disabled = true
@@ -170,9 +170,9 @@ text = "Upgrade Minions"
 [node name="curPlayerLabel" type="Label" parent="UiNodes/buyMenu"]
 use_parent_material = true
 layout_mode = 0
-offset_left = 1427.0
+offset_left = 1363.0
 offset_top = 868.0
-offset_right = 1467.0
+offset_right = 1403.0
 offset_bottom = 891.0
 theme_override_font_sizes/font_size = 10
 text = "$8"
@@ -182,9 +182,9 @@ vertical_alignment = 1
 [node name="buyPlayer" type="Button" parent="UiNodes/buyMenu"]
 use_parent_material = true
 layout_mode = 0
-offset_left = 1403.0
+offset_left = 1339.0
 offset_top = 884.0
-offset_right = 1486.0
+offset_right = 1422.0
 offset_bottom = 906.0
 theme_override_font_sizes/font_size = 10
 disabled = true
