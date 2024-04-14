@@ -30,6 +30,7 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_o275v")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.627451, 0.901961, 0.92549, 1)
 shadow_enabled = true
 shadow_color = Color(0.0588235, 0.0588235, 0.0588235, 0)
 texture = ExtResource("3_hpg42")
