@@ -5,6 +5,16 @@ enum Faction {
 	BRAIN_SLAYER,
 	ROOK_INVASION
 }
+enum BehaviourState {
+	IDLE,
+	FOLLOW_PLAYER,
+	TASK,
+	FIGHT
+}
+enum TaskType {
+	FORAGE_GEMS,
+	MINE_DEPOSITS
+}
 
 @export var mesh : Mesh
 # Maximum number of ants that can exist in a scene at any time
@@ -18,9 +28,31 @@ var ant_colony_factions : Dictionary
 # Key is the unique identifier
 # Value is dictionary of data for the ant behaviour
 var ant_colony_data : Dictionary
-
 # Value holds a dictionary with values for the position and heading of an ant
 var ant_colony_transforms : Dictionary
+
+# PATHFINDING DATA
+var pathfinding_machine : NavigationServer2D
+
+# Behaviour-related dictionaries... if an entity is in the given state, it will run said behaviour
+
+# Idle: ant mindlessly patrols in an area until it is interrupted by a hostile. Value holds the following data:
+	# Patrol Point: position they are idling in
+	# Next Patrol point: next valid position in a radius around thew patrol point
+var ant_behaviour_idle : Dictionary
+# Follow Player: ant mindlessly follows player
+var ant_behaviour_follow_player : Dictionary
+# Task: ant completes a given task, can't switch to fight when holding something. Data:
+	# task type (foraging or mining)
+	# task marker position
+# Task switches to foraging in area it was mining when there is nothing left to mine
+# Task switches to idle when there is nothing left to forage
+var ant_behaviour_task : Dictionary
+# Fight: if free ant will fight nearby hostiles, then return to what it was previously doing. Data:
+	# task to return to
+	# data for task to return to
+# returns to previous task once there are no more hostiles around
+var ant_behaviour_fight : Dictionary
 
 func _ant_exists(entity : int)->bool:
 	return ant_colony_data.has(entity) and ant_colony_factions.has(entity) and ant_colony_transforms.has(entity)
@@ -93,7 +125,6 @@ func _process_ants(delta : float):
 func _process_singular_ant_behaviour(entity : int, delta : float):
 	if _ant_exists(entity):
 		var faction : Faction = ant_colony_factions[entity]
-	
 
 func _process_multimesh(delta : float):
 	active_ant_queue.sort_custom(func(a : int, b : int):

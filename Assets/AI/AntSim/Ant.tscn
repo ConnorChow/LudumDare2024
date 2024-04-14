@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtmt71q86ldtu"]
+
+[ext_resource type="Script" path="res://Assets/AI/AntSim/Ant.gd" id="1_8pxyp"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vtow8"]
+frequency = 0.4057
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6nx4j"]
+width = 16
+height = 16
+noise = SubResource("FastNoiseLite_vtow8")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4g6hu"]
+radius = 64.0
+
+[node name="Ant" type="Sprite2D" groups=["ant"]]
+z_index = 1
+texture = SubResource("NoiseTexture2D_6nx4j")
+script = ExtResource("1_8pxyp")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_4g6hu")
+
+[node name="GrabbedItemAnchor" type="Node2D" parent="."]
