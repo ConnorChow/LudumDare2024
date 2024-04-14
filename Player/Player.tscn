@@ -209,6 +209,15 @@ texture = ExtResource("3_0ykis")
 region_enabled = true
 region_rect = Rect2(20, 0, 20, 20)
 
+[node name="LightLabel" type="Label" parent="UiNodes/placeWheel/Light"]
+use_parent_material = true
+offset_left = 8.0
+offset_top = -5.0
+offset_right = 48.0
+offset_bottom = 18.0
+theme_override_font_sizes/font_size = 10
+text = "$1"
+
 [node name="LightButton" type="Button" parent="UiNodes/placeWheel/Light"]
 modulate = Color(1, 1, 1, 0)
 use_parent_material = true
@@ -223,6 +232,15 @@ position = Vector2(16, 11)
 texture = ExtResource("3_0ykis")
 region_enabled = true
 region_rect = Rect2(40, 0, 20, 20)
+
+[node name="BattleLabel" type="Label" parent="UiNodes/placeWheel/BattleTower"]
+use_parent_material = true
+offset_left = 8.0
+offset_top = -3.0
+offset_right = 48.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 10
+text = "$5"
 
 [node name="BattleTowerButton" type="Button" parent="UiNodes/placeWheel/BattleTower"]
 modulate = Color(1, 1, 1, 0)

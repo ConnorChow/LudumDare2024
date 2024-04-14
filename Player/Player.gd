@@ -36,7 +36,11 @@ var canBuy : bool = false
 #placeable objects
 var wheelOpen : bool = false
 @onready var place_wheel = $UiNodes/placeWheel
+
+@onready var light_label = $UiNodes/placeWheel/Light/LightLabel
 @onready var light_button = $UiNodes/placeWheel/Light/LightButton
+
+@onready var battle_label = $UiNodes/placeWheel/BattleTower/BattleLabel
 @onready var battle_tower_button = $UiNodes/placeWheel/BattleTower/BattleTowerButton
 
 var canPlace : bool = true
@@ -131,6 +135,7 @@ func get_input():
 		if heldObject != null:
 				heldObject.reparent(get_parent())
 				dropItem()
+
 	if Input.is_action_just_pressed("wheelToggle"):
 		place_wheel.visible = !place_wheel.visible
 		wheelOpen = !wheelOpen
