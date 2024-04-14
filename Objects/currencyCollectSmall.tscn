@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://pstoogj43le5"]
 
-[ext_resource type="Texture2D" uid="uid://b80rkqf2yl0ua" path="res://Assets/placeHolder.png" id="1_g0iat"]
+[ext_resource type="Texture2D" uid="uid://c1wq40epls84g" path="res://Assets/LudumDare16x16.png" id="1_q6vdw"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dqran"]
-radius = 5.09902
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1njwa"]
+size = Vector2(8, 16)
 
 [node name="currencyCollectSmall" type="Area2D" groups=["Grab"]]
 collision_layer = 9
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_dqran")
+shape = SubResource("RectangleShape2D_1njwa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_g0iat")
+texture = ExtResource("1_q6vdw")
 region_enabled = true
-region_rect = Rect2(64, 0, 16, 16)
+region_rect = Rect2(0, 16, 16, 16)
