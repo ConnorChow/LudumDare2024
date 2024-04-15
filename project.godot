@@ -24,7 +24,6 @@ OptionsController="*res://Scenes/OptionsController.gd"
 
 window/size/viewport_width=400
 window/size/viewport_height=300
-window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [dotnet]
