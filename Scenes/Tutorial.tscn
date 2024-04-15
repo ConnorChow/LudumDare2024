@@ -29,6 +29,7 @@ material = SubResource("CanvasItemMaterial_gxu1g")
 script = ExtResource("1_f3xlj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
 use_parent_material = true
 offset_top = 8.0
 offset_right = 128.0
@@ -59,6 +60,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="PanelContainer2" type="PanelContainer" parent="."]
+visible = false
 use_parent_material = true
 offset_left = 136.0
 offset_top = 8.0
@@ -84,6 +86,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="PanelContainer3" type="PanelContainer" parent="."]
+visible = false
 use_parent_material = true
 offset_left = 272.0
 offset_top = 8.0
@@ -108,6 +111,36 @@ In total; gather resouces, improves your stats and defenses then, hunt your enem
 horizontal_alignment = 1
 autowrap_mode = 3
 
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer3"]
+position = Vector2(-128, 48)
+texture = ExtResource("2_51u32")
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="PanelContainer3"]
+position = Vector2(-128, 152)
+texture = ExtResource("2_51u32")
+region_enabled = true
+region_rect = Rect2(0, 48, 16, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="PanelContainer3"]
+position = Vector2(-128, 272)
+texture = ExtResource("2_51u32")
+region_enabled = true
+region_rect = Rect2(48, 16, 16, 16)
+
+[node name="Sprite2D4" type="Sprite2D" parent="PanelContainer3"]
+position = Vector2(64, 16)
+texture = ExtResource("2_51u32")
+region_enabled = true
+region_rect = Rect2(32, 16, 16, 16)
+
+[node name="Sprite2D5" type="Sprite2D" parent="PanelContainer3"]
+position = Vector2(-208, 136)
+texture = ExtResource("3_35hqr")
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)
+
 [node name="Label" type="Label" parent="."]
 use_parent_material = true
 offset_left = -8.0
@@ -129,35 +162,5 @@ offset_top = 8.0
 offset_right = 24.0
 offset_bottom = 16.0
 scale = Vector2(0.972015, 1.01769)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(144, 56)
-texture = ExtResource("2_51u32")
-region_enabled = true
-region_rect = Rect2(0, 16, 16, 16)
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(144, 168)
-texture = ExtResource("2_51u32")
-region_enabled = true
-region_rect = Rect2(0, 48, 16, 16)
-
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(144, 280)
-texture = ExtResource("2_51u32")
-region_enabled = true
-region_rect = Rect2(48, 16, 16, 16)
-
-[node name="Sprite2D4" type="Sprite2D" parent="."]
-position = Vector2(336, 32)
-texture = ExtResource("2_51u32")
-region_enabled = true
-region_rect = Rect2(32, 16, 16, 16)
-
-[node name="Sprite2D5" type="Sprite2D" parent="."]
-position = Vector2(64, 152)
-texture = ExtResource("3_35hqr")
-region_enabled = true
-region_rect = Rect2(0, 32, 16, 16)
 
 [connection signal="pressed" from="Label/Button" to="." method="_on_button_pressed"]
