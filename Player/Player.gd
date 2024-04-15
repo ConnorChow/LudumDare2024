@@ -27,6 +27,7 @@ var canBuy : bool = false
 @onready var buy_minion = $UiNodes/buyMenu/buyMinion
 @onready var cur_cost_label = $UiNodes/buyMenu/curCostLabel
 #buy unit upgrades
+
 @onready var cur_upgrade_label = $UiNodes/buyMenu/curUpgradeLabel
 @onready var buy_upgrade = $UiNodes/buyMenu/buyUpgrade
 #buy player upgrades
@@ -69,10 +70,13 @@ var canGrab : bool = true
 var recalling : bool = false
 
 #walk timer
-
 @onready var walk_1 = $walkingSfx/walk1
 
+#upgrades
+@onready var light_bubble = $lightBubble
 
+var playerUpgrades :int = 0
+var antUpgrades : int = 0
 
 #home position gets set when the player laods in the game and touches the base.
 #the base calls the players function and tells it it's position. 
@@ -306,6 +310,8 @@ func buyMinion():
 func _on_buy_upgrade_pressed():
 	buyUpgrade()
 func buyUpgrade():
+	antUpgrades +=1
+	antUpgrade()
 	#upgrade unit
 	CurrencyCount.currency -= CurrencyCount.unitUpgradeCost
 	#These should probably be fixed costs, and increase based on specific tiers
@@ -317,13 +323,15 @@ func buyUpgrade():
 func _on_buy_player_pressed():
 	buyPlayer()
 func buyPlayer():
+	playerUpgrade()
+	playerUpgrades +=1
 	#upgrade player
 	CurrencyCount.currency -= CurrencyCount.playerUpgradeCost
 	#Same deal, these should be flat costs, that have set values based on the 
 	#specific upgrade. I don't think we need to scale these based on the players
 	#current units? Testing needed though obv
 	CurrencyCount.playerUpgradeCost = floor(CurrencyCount.playerUpgradeCost * 1.5)
-	cur_upgrade_label.set_text("$" + str(CurrencyCount.playerUpgradeCost))  
+	cur_player_label.set_text("$" + str(CurrencyCount.playerUpgradeCost))  
 	updateCur()
 
 #you might want to improve this to use the tilemap, so objects behave properly
@@ -382,30 +390,39 @@ func antFollow():
 func antFight():
 	
 	pass
-	
 func antMine():
 	
 	pass
 
-
 func _on_fight_button_pressed():
 	antFight()
-
-
-
 func _on_follow_button_pressed():
 	antFollow()
-
-
 func _on_mine_button_pressed():
 	antMine()
-
-
-
 func _on_gather_button_pressed():
 	antForage()
-
-
-
 func _on_role_call_pressed():
 	roleCall()
+
+func antUpgrade():
+	
+	pass
+func playerUpgrade():
+	match playerUpgrades:
+		0:
+			pass
+		1:
+			speed += 2
+			maxSpeed +=2
+		2:
+			light_bubble.set_texture_scale(1.1)
+		3:
+			speed += 3
+			maxSpeed +=3
+		4:
+			light_bubble.set_texture_scale(1.4)
+		_:
+			speed += 1
+			maxSpeed +=1
+
