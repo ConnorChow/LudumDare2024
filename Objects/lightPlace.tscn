@@ -9,6 +9,7 @@ region_enabled = true
 region_rect = Rect2(20, 0, 20, 20)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+blend_mode = 2
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("2_7orx0")

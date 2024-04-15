@@ -62,6 +62,13 @@ var canGrab : bool = true
 #the animation that the sprite takes on during the recall. will need to be changed
 @onready var recall_sprite = $recallSprite
 var recalling : bool = false
+
+#walk timer
+
+@onready var walk_1 = $walkingSfx/walk1
+
+
+
 #home position gets set when the player laods in the game and touches the base.
 #the base calls the players function and tells it it's position. 
 #its bad, but it works, and the base can be moved during runtime
@@ -93,6 +100,16 @@ func _physics_process(delta):
 	if recalling:
 		if !input_direction == Vector2(0,0) :
 			stopRecall()
+	
+	#walking sound effect
+	if !input_direction == Vector2(0,0) :
+		if !walk_1.is_playing() :
+			walk_1.play()
+	else:
+		walk_1.stop()
+		print("fuck")
+
+
 
 
 	if velocity.x > 0:
@@ -325,4 +342,5 @@ func _on_light_button_pressed():
 
 func _on_battle_tower_button_pressed():
 	placeObject("Battle")
+
 

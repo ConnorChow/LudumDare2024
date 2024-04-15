@@ -8,5 +8,5 @@ var unitUpgradeCost : int = 20
 
 var playerUpgradeCost : int =8
 
-func _purchase_minion():
-	get_tree().root
+#func _purchase_minion():
+#	get_tree().root
