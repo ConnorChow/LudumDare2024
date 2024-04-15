@@ -31,15 +31,16 @@ visible = false
 use_parent_material = true
 offset_top = 8.0
 offset_right = 128.0
-offset_bottom = 232.0
+offset_bottom = 273.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_8mmvg")
 
 [node name="Label" type="Label" parent="PanelContainer"]
 use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 7
 text = "Controls:
+
 H to show / hide Help Window
 
 WASD / Arrows to walk
@@ -51,7 +52,8 @@ B to Recall to the base after a short delay
 Move to your base to buy units and upgrades
 
 Tab / Mouse 3 / NUM 0 to show / hide building menu
-"
+
+M2 / Control / Num Period to open the minion control wheel. These can be used while no wheels are shown"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -61,15 +63,16 @@ use_parent_material = true
 offset_left = 136.0
 offset_top = 8.0
 offset_right = 264.0
-offset_bottom = 292.0
+offset_bottom = 273.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_8mmvg")
 
 [node name="Label" type="Label" parent="PanelContainer2"]
 use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 7
 text = "Instructions:
+
 Gather the elemental gems to build your army and improve your abilities to fight the encroaching entities.
 
 Defeat your enemies! By claiming your opponents heart, and taking it back to your base you have claimed victory over them. Collect all 6 to win!
@@ -86,15 +89,16 @@ use_parent_material = true
 offset_left = 272.0
 offset_top = 8.0
 offset_right = 400.0
-offset_bottom = 292.0
+offset_bottom = 272.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_8mmvg")
 
 [node name="Label" type="Label" parent="PanelContainer3"]
 use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 7
 text = "Instructions:
+
 Guide your minions in combat and collection. They will aid you to the death.
 
 Minions can be left to complete tasks automatically, but will not search very far.

@@ -194,6 +194,36 @@ theme_override_font_sizes/font_size = 10
 disabled = true
 text = "Upgrade Player"
 
+[node name="Label" type="Label" parent="UiNodes/buyMenu"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1043.0
+offset_top = 884.0
+offset_right = 1083.0
+offset_bottom = 907.0
+theme_override_font_sizes/font_size = 8
+text = "1"
+
+[node name="Label2" type="Label" parent="UiNodes/buyMenu"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1187.0
+offset_top = 884.0
+offset_right = 1227.0
+offset_bottom = 907.0
+theme_override_font_sizes/font_size = 8
+text = "2"
+
+[node name="Label3" type="Label" parent="UiNodes/buyMenu"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1339.0
+offset_top = 884.0
+offset_right = 1379.0
+offset_bottom = 907.0
+theme_override_font_sizes/font_size = 8
+text = "3"
+
 [node name="placeWheel" type="Control" parent="UiNodes"]
 use_parent_material = true
 anchors_preset = 0
