@@ -33,6 +33,11 @@ var canBuy : bool = false
 @onready var cur_player_label = $UiNodes/buyMenu/curPlayerLabel
 @onready var buy_player = $UiNodes/buyMenu/buyPlayer
 
+#minionwheel
+var minionWheel : bool = false
+@onready var direct_wheel = $UiNodes/directWheel
+
+
 #placeable objects
 var wheelOpen : bool = false
 @onready var place_wheel = $UiNodes/placeWheel
@@ -147,7 +152,19 @@ func get_input():
 				pass
 			if Input.is_action_just_pressed("5"):
 				pass
+		else:
+			if Input.is_action_just_pressed("1"):
+				antFollow()
+			if Input.is_action_just_pressed("2"):
+				antFight()
+			if Input.is_action_just_pressed("3"):
+				antForage()
+			if Input.is_action_just_pressed("4"):
+				antMine()
+			if Input.is_action_just_pressed("5"):
+				pass
 
+		
 	if Input.is_action_just_pressed("recall"):
 		if heldObject != null:
 				heldObject.reparent(get_parent())
@@ -156,6 +173,14 @@ func get_input():
 	if Input.is_action_just_pressed("wheelToggle"):
 		place_wheel.visible = !place_wheel.visible
 		wheelOpen = !wheelOpen
+		direct_wheel.visible = false
+		minionWheel = false
+		
+	if Input.is_action_just_pressed("minionWheel"):
+		direct_wheel.visible = !direct_wheel.visible
+		minionWheel= !minionWheel
+		place_wheel.visible = false
+		wheelOpen = false
 	
 	if Input.is_action_just_pressed("grab"):
 		if canGrab:
@@ -173,24 +198,8 @@ func get_input():
 						modMaxSpeed = maxSpeed * .6
 						break
 	
-	if Input.is_action_just_pressed("follow"):
-		var i = grab_box.get_overlapping_areas()
-		for g in i:
-			var potential_ant : Node2D = g.get_parent() as Node2D
-			if potential_ant.is_in_group("ant"):
-				print("ant")
-				potential_ant.call_deferred("_receive_command_follow")
-				following_ants.append(potential_ant)
-	
-	if Input.is_action_just_pressed("role_call"):
-		for ant in get_tree().get_nodes_in_group("ant"):
-			(ant as Node2D).call_deferred("_receive_command_follow")
-			following_ants.append(ant as Node2D)
-	
-	if Input.is_action_just_pressed("assign_foraging"):
-		for ant in following_ants:
-			ant.call_deferred("_receive_command_forage")
-		following_ants.clear()
+
+		
 var following_ants : Array
 
 #start recalling
@@ -273,6 +282,8 @@ func buyEnable():
 	buy_menu.visible = true
 	wheelOpen = false
 	place_wheel.visible = false
+	direct_wheel.visible = false
+	minionWheel = false
 
 func buyDisable():
 	canBuy = false
@@ -348,4 +359,53 @@ func _on_light_button_pressed():
 func _on_battle_tower_button_pressed():
 	placeObject("Battle")
 
+func roleCall():
+	for ant in get_tree().get_nodes_in_group("ant"):
+		(ant as Node2D).call_deferred("_receive_command_follow")
+		following_ants.append(ant as Node2D)
 
+	
+func antForage():
+	for ant in following_ants:
+		ant.call_deferred("_receive_command_forage")
+		following_ants.clear()
+
+	
+func antFollow():
+	var i = grab_box.get_overlapping_areas()
+	for g in i:
+		var potential_ant : Node2D = g.get_parent() as Node2D
+		if potential_ant.is_in_group("ant"):
+			potential_ant.call_deferred("_receive_command_follow")
+			following_ants.append(potential_ant)
+
+func antFight():
+	
+	pass
+	
+func antMine():
+	
+	pass
+
+
+func _on_fight_button_pressed():
+	antFight()
+
+
+
+func _on_follow_button_pressed():
+	antFollow()
+
+
+func _on_mine_button_pressed():
+	antMine()
+
+
+
+func _on_gather_button_pressed():
+	antForage()
+
+
+
+func _on_role_call_pressed():
+	roleCall()

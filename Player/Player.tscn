@@ -232,6 +232,15 @@ offset_top = -5.0
 offset_bottom = 3.0
 scale = Vector2(1.99982, 1.99982)
 
+[node name="Label" type="Label" parent="UiNodes/placeWheel/Light"]
+use_parent_material = true
+offset_left = -3.0
+offset_top = -19.0
+offset_right = 37.0
+offset_bottom = 4.0
+theme_override_font_sizes/font_size = 8
+text = "1"
+
 [node name="BattleTower" type="Sprite2D" parent="UiNodes/placeWheel"]
 use_parent_material = true
 position = Vector2(16, 11)
@@ -255,6 +264,176 @@ offset_left = -8.0
 offset_top = -11.0
 offset_bottom = -3.0
 scale = Vector2(2.00059, 2.00059)
+
+[node name="Label2" type="Label" parent="UiNodes/placeWheel/BattleTower"]
+use_parent_material = true
+offset_top = 5.0
+offset_right = 40.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 8
+text = "2"
+
+[node name="directWheel" type="Control" parent="UiNodes"]
+use_parent_material = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="UiNodes/directWheel"]
+modulate = Color(0.105882, 0.298039, 0.309804, 0.392157)
+use_parent_material = true
+position = Vector2(1159, 727)
+mesh = SubResource("SphereMesh_kil61")
+
+[node name="Sprite2D" type="Sprite2D" parent="UiNodes/directWheel"]
+use_parent_material = true
+position = Vector2(1159, 727)
+texture = ExtResource("2_6cv7j")
+region_enabled = true
+region_rect = Rect2(32, 16, 16, 16)
+
+[node name="Label" type="Label" parent="UiNodes/directWheel/Sprite2D"]
+use_parent_material = true
+offset_left = -24.0
+offset_top = -46.0
+offset_right = 27.0
+offset_bottom = -23.0
+theme_override_font_sizes/font_size = 7
+text = "Follow"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UiNodes/directWheel/Sprite2D"]
+use_parent_material = true
+offset_left = -64.0
+offset_top = -13.0
+offset_right = -13.0
+offset_bottom = 10.0
+theme_override_font_sizes/font_size = 7
+text = "Mine"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="UiNodes/directWheel/Sprite2D"]
+use_parent_material = true
+offset_left = 8.0
+offset_top = -13.0
+offset_right = 59.0
+offset_bottom = 10.0
+theme_override_font_sizes/font_size = 7
+text = "Fight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="UiNodes/directWheel/Sprite2D"]
+use_parent_material = true
+offset_left = -24.0
+offset_top = 24.0
+offset_right = 27.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 7
+text = "Gather"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="UiNodes/directWheel/Sprite2D"]
+use_parent_material = true
+offset_left = -24.0
+offset_right = 27.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+text = "Follow ALL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="fightButton" type="Button" parent="UiNodes/directWheel/Sprite2D"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 23.0
+offset_top = -8.0
+offset_right = 31.0
+scale = Vector2(2.75217, 1.73507)
+
+[node name="followButton" type="Button" parent="UiNodes/directWheel/Sprite2D"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -10.0
+offset_top = -40.0
+offset_right = -2.0
+offset_bottom = -32.0
+scale = Vector2(2.75217, 1.73507)
+
+[node name="mineButton" type="Button" parent="UiNodes/directWheel/Sprite2D"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -50.0
+offset_top = -8.0
+offset_right = -42.0
+scale = Vector2(2.75217, 1.73507)
+
+[node name="gatherButton" type="Button" parent="UiNodes/directWheel/Sprite2D"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -10.0
+offset_top = 30.0
+offset_right = -2.0
+offset_bottom = 38.0
+scale = Vector2(2.75217, 1.73507)
+
+[node name="roleCall" type="Button" parent="UiNodes/directWheel/Sprite2D"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -11.0
+offset_top = 7.0
+offset_right = -3.0
+offset_bottom = 15.0
+scale = Vector2(3.02261, 2.41563)
+
+[node name="Label4" type="Label" parent="UiNodes/directWheel"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1159.0
+offset_top = 679.0
+offset_right = 1199.0
+offset_bottom = 702.0
+theme_override_font_sizes/font_size = 8
+text = "1"
+
+[node name="Label3" type="Label" parent="UiNodes/directWheel"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1207.0
+offset_top = 719.0
+offset_right = 1247.0
+offset_bottom = 742.0
+theme_override_font_sizes/font_size = 8
+text = "2"
+
+[node name="Label5" type="Label" parent="UiNodes/directWheel"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1159.0
+offset_top = 767.0
+offset_right = 1199.0
+offset_bottom = 790.0
+theme_override_font_sizes/font_size = 8
+text = "3"
+
+[node name="Label6" type="Label" parent="UiNodes/directWheel"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1103.0
+offset_top = 719.0
+offset_right = 1143.0
+offset_bottom = 742.0
+theme_override_font_sizes/font_size = 8
+text = "4"
+
+[node name="Label7" type="Label" parent="UiNodes/directWheel"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1140.0
+offset_top = 742.0
+offset_right = 1180.0
+offset_bottom = 765.0
+theme_override_font_sizes/font_size = 7
+text = "SPACE"
+horizontal_alignment = 1
 
 [node name="grabBox" type="Area2D" parent="."]
 position = Vector2(-1, 0)
@@ -315,6 +494,11 @@ position = Vector2(-200, -152)
 [connection signal="pressed" from="UiNodes/buyMenu/buyPlayer" to="." method="_on_buy_player_pressed"]
 [connection signal="pressed" from="UiNodes/placeWheel/Light/LightButton" to="." method="_on_light_button_pressed"]
 [connection signal="pressed" from="UiNodes/placeWheel/BattleTower/BattleTowerButton" to="." method="_on_battle_tower_button_pressed"]
+[connection signal="pressed" from="UiNodes/directWheel/Sprite2D/fightButton" to="." method="_on_fight_button_pressed"]
+[connection signal="pressed" from="UiNodes/directWheel/Sprite2D/followButton" to="." method="_on_follow_button_pressed"]
+[connection signal="pressed" from="UiNodes/directWheel/Sprite2D/mineButton" to="." method="_on_mine_button_pressed"]
+[connection signal="pressed" from="UiNodes/directWheel/Sprite2D/gatherButton" to="." method="_on_gather_button_pressed"]
+[connection signal="pressed" from="UiNodes/directWheel/Sprite2D/roleCall" to="." method="_on_role_call_pressed"]
 [connection signal="timeout" from="grabTimer" to="." method="_on_grab_timer_timeout"]
 [connection signal="timeout" from="recallTimer" to="." method="_on_recall_timer_timeout"]
 [connection signal="timeout" from="iFrames" to="." method="_on_i_frames_timeout"]
