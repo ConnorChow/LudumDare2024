@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0qrdderuwrjf"]
+[gd_scene load_steps=15 format=3 uid="uid://c0qrdderuwrjf"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_65vep"]
 [ext_resource type="Texture2D" uid="uid://c1wq40epls84g" path="res://Assets/LudumDare16x16.png" id="2_6cv7j"]
@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://c8julgn2dopfo" path="res://Assets/sfx/full footsteps.mp3" id="5_pmwew"]
 [ext_resource type="PackedScene" uid="uid://doh85u2y782ep" path="res://Player/SnowParticles.tscn" id="6_khf48"]
 [ext_resource type="PackedScene" uid="uid://deamrdcsyafem" path="res://Scenes/Tutorial.tscn" id="7_h0mkn"]
-[ext_resource type="PackedScene" uid="uid://b1p10wy7pie6b" path="res://Player/recall.tscn" id="8_ekpdm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nxp3"]
 size = Vector2(10, 16)
@@ -475,7 +474,7 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="grabBox"]
 shape = SubResource("CircleShape2D_wk7ve")
 
-[node name="holdPoint" type="Node2D" parent="."]
+[node name="holdPoint" type="Node2D" parent="." groups=["hands"]]
 position = Vector2(0, -3)
 
 [node name="lightBubble" type="PointLight2D" parent="."]
@@ -518,9 +517,6 @@ position = Vector2(-203, -24)
 
 [node name="Tutorial" parent="." instance=ExtResource("7_h0mkn")]
 position = Vector2(-200, -152)
-
-[node name="RecallAnim" parent="." instance=ExtResource("8_ekpdm")]
-z_index = -1
 
 [connection signal="timeout" from="UiNodes/hitBox/hitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="pressed" from="UiNodes/buyMenu/buyMinion" to="." method="_on_buy_minion_pressed"]

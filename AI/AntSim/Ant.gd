@@ -52,12 +52,8 @@ enum FightState {
 var health : float
 
 @export var patrol_radius : float = 25
-
 @export var movement_speed : float = 10
-
-@export var mining_strength : float
-@export var fighting_strength : float
-@export var carry_strength : float
+@export var fighting_strength : float = 20
 
 var initialized : bool = false
 
@@ -66,6 +62,7 @@ var player_base : Node2D
 
 @export var flag : Vector2
 
+var currency_value : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	navigation_agent_2d.path_desired_distance = 10.0
@@ -75,6 +72,13 @@ func _ready():
 	player = get_tree().get_nodes_in_group("player").pop_front()
 	player_base = get_tree().get_nodes_in_group("player_base").pop_front()
 	
+	match OptionsController.difficulty:
+		1:
+			currency_value = 3
+		2:
+			currency_value = 2
+		3:
+			currency_value = 1
 
 func _ready_navmesh():
 	await get_tree().physics_frame
@@ -139,18 +143,18 @@ func _task_forage_behaviour(delta):
 				forage_state = ForageState.RETURN
 		ForageState.RETURN:
 			if global_position.distance_to(player_base.global_position) < 10 and grabbed_item_anchor.get_child_count() > 0:
-				CurrencyCount.currency += 1
+				CurrencyCount.currency += currency_value
 				player.updateCur()
 				grabbed_item_anchor.get_child(0).queue_free()
 				forage_state = ForageState.APPROACH
 
 func _check_valid_list():
-	if target_currency == null or !(target_currency as Area2D).monitorable:
+	if target_currency == null or !(target_currency as Area2D).monitorable or target_currency.get_parent().is_in_group("player"):
 		forage_state = ForageState.SURVEY
 
 @onready var grabbed_item_anchor = $GrabbedItemAnchor
 func _grab_item(item : Node2D):
-	former_parent = item.get_parent()
+	former_parent = get_parent()
 	visible_currencies.erase(item)
 	item.global_position = grabbed_item_anchor.global_position
 	item.reparent(grabbed_item_anchor)
@@ -180,7 +184,7 @@ func _receive_command_forage():
 
 var visible_currencies : Array[Node2D]
 func _entity_seen(area):
-	if area.is_in_group("Grab"):
+	if area.is_in_group("Grab") and !area.get_parent().is_in_group("player"):
 		visible_currencies.append(area)
 
 func entity_lost_sight(area):
@@ -190,7 +194,7 @@ func entity_lost_sight(area):
 
 var reachable_currencies : Array[Node2D]
 func entity_entered_range(area):
-	if area.is_in_group("Grab"):
+	if area.is_in_group("Grab") and !area.get_parent().is_in_group("player"):
 		reachable_currencies.append(area)
 
 func entity_exited_range(area):
