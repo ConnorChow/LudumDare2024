@@ -273,6 +273,7 @@ theme_override_font_sizes/font_size = 8
 text = "1"
 
 [node name="BattleTower" type="Sprite2D" parent="UiNodes/placeWheel"]
+visible = false
 use_parent_material = true
 position = Vector2(16, 11)
 texture = ExtResource("2_6cv7j")
@@ -512,6 +513,7 @@ offset_bottom = 40.0
 
 [node name="walk1" type="AudioStreamPlayer" parent="walkingSfx"]
 stream = ExtResource("5_pmwew")
+volume_db = -10.0
 
 [node name="GPUParticles2D" parent="." instance=ExtResource("6_khf48")]
 position = Vector2(-203, -24)
