@@ -1,29 +1,45 @@
 [gd_scene load_steps=5 format=3 uid="uid://dtmt71q86ldtu"]
 
 [ext_resource type="Script" path="res://Assets/AI/AntSim/Ant.gd" id="1_8pxyp"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_vtow8"]
-frequency = 0.4057
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6nx4j"]
-width = 16
-height = 16
-noise = SubResource("FastNoiseLite_vtow8")
+[ext_resource type="Texture2D" uid="uid://c1wq40epls84g" path="res://Assets/LudumDare16x16.png" id="1_t4it3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4g6hu"]
 radius = 64.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hebdo"]
+radius = 14.5602
+
 [node name="Ant" type="Sprite2D" groups=["ant"]]
 z_index = 1
-texture = SubResource("NoiseTexture2D_6nx4j")
+texture = ExtResource("1_t4it3")
+region_enabled = true
+region_rect = Rect2(32, 16, 16, 16)
 script = ExtResource("1_8pxyp")
+patrol_radius = 128.0
+movement_speed = 60.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="VisibilityScanner" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibilityScanner"]
 shape = SubResource("CircleShape2D_4g6hu")
 
+[node name="GrabbingScanner" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabbingScanner"]
+shape = SubResource("CircleShape2D_hebdo")
+
 [node name="GrabbedItemAnchor" type="Node2D" parent="."]
+position = Vector2(3, 3)
+
+[connection signal="area_entered" from="VisibilityScanner" to="." method="_entity_seen"]
+[connection signal="area_exited" from="VisibilityScanner" to="." method="entity_lost_sight"]
+[connection signal="area_entered" from="GrabbingScanner" to="." method="entity_entered_range"]
+[connection signal="area_exited" from="GrabbingScanner" to="." method="entity_exited_range"]
