@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt5u3u0ra0b4w"]
+
+[ext_resource type="Script" path="res://BrainGoop.gd" id="1_3rcc7"]
+[ext_resource type="Texture2D" uid="uid://s8s5tb1ppy7o" path="res://Assets/LudumDare32x32.png" id="1_5ucrv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lk4oe"]
+texture = ExtResource("1_5ucrv")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_5kyyg"]
+physics_layer_0/collision_layer = 16
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_lk4oe")
+
+[node name="TileMap" type="TileMap"]
+tile_set = SubResource("TileSet_5kyyg")
+format = 2
+script = ExtResource("1_3rcc7")

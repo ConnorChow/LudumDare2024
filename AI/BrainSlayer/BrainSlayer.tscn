@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://df014dwc0slt6"]
+
+[ext_resource type="Texture2D" uid="uid://c1wq40epls84g" path="res://Assets/LudumDare16x16.png" id="1_rm27j"]
+[ext_resource type="Script" path="res://AI/BrainSlayer/BrainSlayer.gd" id="2_dpf2n"]
+
+[node name="BrainSlayer" type="Sprite2D"]
+texture = ExtResource("1_rm27j")
+region_enabled = true
+region_rect = Rect2(16, 32, 16, 16)
+script = ExtResource("2_dpf2n")
