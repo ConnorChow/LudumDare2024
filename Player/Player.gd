@@ -155,6 +155,21 @@ func get_input():
 						modSpeed = speed * .6
 						modMaxSpeed = maxSpeed * .6
 						break
+	
+	if Input.is_action_just_pressed("follow"):
+		var i = grab_box.get_overlapping_areas()
+		for g in i:
+			var potential_ant : Node2D = g.get_parent() as Node2D
+			if potential_ant.is_in_group("ant"):
+				print("ant")
+				potential_ant.call_deferred("_receive_command_follow")
+				following_ants.append(potential_ant)
+	
+	if Input.is_action_just_pressed("assign_foraging"):
+		for ant in following_ants:
+			ant.call_deferred("_receive_command_forage")
+		following_ants.clear()
+var following_ants : Array
 
 #start recalling
 #press b, change sprite / animation / whatever
@@ -241,11 +256,14 @@ func buyDisable():
 	canBuy = false
 	buy_menu.visible = false
 
+@export var minion_ant : PackedScene
 func _on_buy_minion_pressed():
 	buyMinion()
+var call_spawn_minion : Callable
 func buyMinion():
 	#spawn unit
 	CurrencyCount.currency -= CurrencyCount.curCost
+	call_spawn_minion.call()
 	# this needs a better equation
 	#when a unit dies, reduce the curcost
 	CurrencyCount.curCost = floor(CurrencyCount.curCost * 1.5)

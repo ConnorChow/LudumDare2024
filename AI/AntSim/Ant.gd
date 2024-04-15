@@ -64,12 +64,12 @@ var initialized : bool = false
 var player : Node2D
 var player_base : Node2D
 
-@export var flag : Node2D
+@export var flag : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	navigation_agent_2d.path_desired_distance = 4.0
-	navigation_agent_2d.target_desired_distance = 4.0
+	navigation_agent_2d.path_desired_distance = 10.0
+	navigation_agent_2d.target_desired_distance = 10.0
 	call_deferred("_ready_navmesh")
 	
 	player = get_tree().get_nodes_in_group("player").pop_front()
@@ -91,18 +91,6 @@ func _process(delta):
 			_task_behaviour(delta)
 		BehaviourState.FIGHT:
 			_fight_behaviour(delta)
-
-func _physics_process(delta):
-	if navigation_agent_2d.is_navigation_finished() or !initialized:
-		return
-	
-	var next_position = navigation_agent_2d.get_next_path_position()
-	var velocity : Vector2 = global_position.direction_to(next_position) * delta * movement_speed
-	global_position += velocity
-	if velocity.x > 0:
-		flip_h = false
-	elif velocity.x < 0:
-		flip_h = true
 
 func _idle_behaviour(delta : float):
 	match idle_state:
@@ -126,14 +114,15 @@ func _task_behaviour(delta : float):
 			_task_forage_behaviour(delta)
 
 var target_currency : Area2D
+var former_parent : Node
 func _task_forage_behaviour(delta):
 	match forage_state:
 		ForageState.APPROACH:
-			if navigation_agent_2d.is_navigation_finished() and global_position.distance_to(flag.global_position) < 512:
-				idle_marker = flag.global_position
+			if navigation_agent_2d.is_navigation_finished() and global_position.distance_to(flag) < 512:
+				idle_marker = flag
 				forage_state = ForageState.SURVEY
-			elif navigation_agent_2d.is_navigation_finished() and global_position.distance_to(flag.global_position) >= 512:
-				navigation_agent_2d.target_position = flag.global_position
+			elif navigation_agent_2d.is_navigation_finished() and global_position.distance_to(flag) >= 512:
+				navigation_agent_2d.target_position = flag
 		ForageState.SURVEY:
 			if visible_currencies.size() > 0:
 				target_currency = visible_currencies.pop_front() as Node2D
@@ -142,6 +131,7 @@ func _task_forage_behaviour(delta):
 			else:
 				_idle_behaviour(delta)
 		ForageState.GRAB:
+			_check_valid_list()
 			if reachable_currencies.size() > 0:
 				_grab_item(reachable_currencies.pop_front())
 				navigation_agent_2d.target_position = player_base.global_position
@@ -149,15 +139,29 @@ func _task_forage_behaviour(delta):
 		ForageState.RETURN:
 			if global_position.distance_to(player_base.global_position) < 10 and grabbed_item_anchor.get_child_count() > 0:
 				CurrencyCount.currency += 1
+				player.updateCur()
 				grabbed_item_anchor.get_child(0).queue_free()
 				forage_state = ForageState.APPROACH
 
+func _check_valid_list():
+	if target_currency == null or !(target_currency as Area2D).monitorable:
+		forage_state = ForageState.SURVEY
+
 @onready var grabbed_item_anchor = $GrabbedItemAnchor
 func _grab_item(item : Node2D):
+	former_parent = item.get_parent()
 	visible_currencies.erase(item)
 	item.global_position = grabbed_item_anchor.global_position
 	item.reparent(grabbed_item_anchor)
 	(item as Area2D).monitorable = false
+
+func _drop_item():
+	if grabbed_item_anchor.get_child_count() > 0:
+		var item = grabbed_item_anchor.get_child(0)
+		item.reparent(former_parent)
+		(item as Area2D).monitorable = true
+		target_currency = null
+		forage_state = ForageState.APPROACH
 
 func _fight_behaviour(delta : float):
 	pass
@@ -165,7 +169,13 @@ func _fight_behaviour(delta : float):
 # set this up via group call with a signal from the player 
 func _receive_command_follow():
 	behaviour_state = BehaviourState.FOLLOW_PLAYER
+	_drop_item()
 
+func _receive_command_forage():
+	behaviour_state = BehaviourState.TASK
+	task_state = TaskType.FORAGE
+	forage_state = ForageState.APPROACH
+	flag = player.global_position
 
 var visible_currencies : Array[Node2D]
 func _entity_seen(area):
@@ -185,3 +195,43 @@ func entity_entered_range(area):
 func entity_exited_range(area):
 	if area.is_in_group("Grab"):
 		reachable_currencies.erase(area)
+
+var movement_delta : float
+var before_velocity : Vector2
+func _physics_process(delta):
+	if navigation_agent_2d.is_navigation_finished() or !initialized:
+		return
+	if behaviour_state == BehaviourState.FOLLOW_PLAYER:
+		navigation_agent_2d.path_desired_distance = 30.0
+		navigation_agent_2d.target_desired_distance = 30.0
+	else:
+		navigation_agent_2d.path_desired_distance = 10.0
+		navigation_agent_2d.target_desired_distance = 10.0
+	
+	movement_delta = delta
+	var next_position = navigation_agent_2d.get_next_path_position()
+	var velocity : Vector2 = (global_position.direction_to(next_position)) * delta * movement_speed
+	#global_position += velocity
+	if navigation_agent_2d.avoidance_enabled:
+		before_velocity = velocity
+		navigation_agent_2d.velocity = (velocity)
+	else:
+		_compute_pathfinding(velocity)
+	
+	if velocity.x > 0:
+		flip_h = false
+		grabbed_item_anchor.position.x = abs(grabbed_item_anchor.position.x)
+	elif velocity.x < 0:
+		flip_h = true
+		grabbed_item_anchor.position.x = -abs(grabbed_item_anchor.position.x)
+
+func _compute_pathfinding(safe_velocity):
+	if navigation_agent_2d.is_navigation_finished() or !initialized:
+		return
+	
+	var avoidance_velocity : Vector2 = safe_velocity - before_velocity
+	var velocity = Vector2.ZERO
+	#if before_velocity.distance_to(Vector2.ZERO) > 0.1:
+	velocity = before_velocity + (avoidance_velocity * movement_delta * 2)
+	
+	global_position += velocity

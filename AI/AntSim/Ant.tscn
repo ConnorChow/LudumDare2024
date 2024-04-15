@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dtmt71q86ldtu"]
 
-[ext_resource type="Script" path="res://Assets/AI/AntSim/Ant.gd" id="1_8pxyp"]
+[ext_resource type="Script" path="res://AI/AntSim/Ant.gd" id="1_8pxyp"]
 [ext_resource type="Texture2D" uid="uid://c1wq40epls84g" path="res://Assets/LudumDare16x16.png" id="1_t4it3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4g6hu"]
@@ -11,17 +11,23 @@ radius = 14.5602
 
 [node name="Ant" type="Sprite2D" groups=["ant"]]
 z_index = 1
+y_sort_enabled = true
 texture = ExtResource("1_t4it3")
 region_enabled = true
 region_rect = Rect2(32, 16, 16, 16)
 script = ExtResource("1_8pxyp")
 patrol_radius = 128.0
-movement_speed = 60.0
+movement_speed = 50.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 4.0
+neighbor_distance = 32.0
+max_neighbors = 4
+max_speed = 8.0
 
 [node name="VisibilityScanner" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 8
 input_pickable = false
 
@@ -39,6 +45,7 @@ shape = SubResource("CircleShape2D_hebdo")
 [node name="GrabbedItemAnchor" type="Node2D" parent="."]
 position = Vector2(3, 3)
 
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_compute_pathfinding"]
 [connection signal="area_entered" from="VisibilityScanner" to="." method="_entity_seen"]
 [connection signal="area_exited" from="VisibilityScanner" to="." method="entity_lost_sight"]
 [connection signal="area_entered" from="GrabbingScanner" to="." method="entity_entered_range"]
