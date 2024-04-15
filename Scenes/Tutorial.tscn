@@ -29,7 +29,6 @@ material = SubResource("CanvasItemMaterial_gxu1g")
 script = ExtResource("1_f3xlj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-visible = false
 use_parent_material = true
 offset_top = 8.0
 offset_right = 128.0
@@ -60,7 +59,6 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="PanelContainer2" type="PanelContainer" parent="."]
-visible = false
 use_parent_material = true
 offset_left = 136.0
 offset_top = 8.0
@@ -86,7 +84,6 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="PanelContainer3" type="PanelContainer" parent="."]
-visible = false
 use_parent_material = true
 offset_left = 272.0
 offset_top = 8.0
@@ -112,30 +109,35 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="PanelContainer3"]
+use_parent_material = true
 position = Vector2(-128, 48)
 texture = ExtResource("2_51u32")
 region_enabled = true
 region_rect = Rect2(0, 16, 16, 16)
 
 [node name="Sprite2D2" type="Sprite2D" parent="PanelContainer3"]
+use_parent_material = true
 position = Vector2(-128, 152)
 texture = ExtResource("2_51u32")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 16)
 
 [node name="Sprite2D3" type="Sprite2D" parent="PanelContainer3"]
-position = Vector2(-128, 272)
+use_parent_material = true
+position = Vector2(-128, 256)
 texture = ExtResource("2_51u32")
 region_enabled = true
 region_rect = Rect2(48, 16, 16, 16)
 
 [node name="Sprite2D4" type="Sprite2D" parent="PanelContainer3"]
+use_parent_material = true
 position = Vector2(64, 16)
 texture = ExtResource("2_51u32")
 region_enabled = true
 region_rect = Rect2(32, 16, 16, 16)
 
 [node name="Sprite2D5" type="Sprite2D" parent="PanelContainer3"]
+use_parent_material = true
 position = Vector2(-208, 136)
 texture = ExtResource("3_35hqr")
 region_enabled = true
