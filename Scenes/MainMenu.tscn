@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://da2vmxnc558aj"]
+
+[ext_resource type="Script" path="res://Scenes/MainMenu.gd" id="1_w2gt0"]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_w2gt0")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 2
+offset_left = 322.0
+offset_top = 48.0
+offset_right = 392.0
+offset_bottom = 122.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="HSeparator" type="HSeparator" parent="Control/PanelContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="OptionsButton" type="Button" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 2
+offset_left = 272.0
+offset_top = 128.0
+offset_right = 392.0
+offset_bottom = 242.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Difficulty"
+
+[node name="DifficultySlider" type="HSlider" parent="Control/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 3.0
+value = 2.0
+
+[node name="HSeparator" type="HSeparator" parent="Control/PanelContainer2/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Control/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Streamer Mode"
+
+[node name="StreamerMode" type="CheckButton" parent="Control/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Control/PanelContainer2/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="drag_ended" from="Control/PanelContainer2/VBoxContainer/DifficultySlider" to="." method="_on_difficulty_slider_drag_ended"]
+[connection signal="pressed" from="Control/PanelContainer2/VBoxContainer/StreamerMode" to="." method="_on_streamer_mode_pressed"]
