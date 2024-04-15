@@ -387,9 +387,11 @@ func antFollow():
 	var i = grab_box.get_overlapping_areas()
 	for g in i:
 		var potential_ant : Node2D = g.get_parent() as Node2D
+		if potential_ant == null: continue
 		if potential_ant.is_in_group("ant"):
 			potential_ant.call_deferred("_receive_command_follow")
 			following_ants.append(potential_ant)
+			
 
 func antFight():
 	
