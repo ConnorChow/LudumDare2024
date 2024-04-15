@@ -12,6 +12,7 @@ func _on_body_entered(body):
 		add_child(entity)
 		entity.owner = get_tree().root
 		entity.global_position = global_position
+		player.following_ants.append(entity)
 
 
 

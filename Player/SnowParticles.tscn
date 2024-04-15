@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://doh85u2y782ep"]
+
+[sub_resource type="Curve" id="Curve_52g1o"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 67.7419), 0.0, 0.0, 0, 0, Vector2(1, 87.0968), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_14eil"]
+curve = SubResource("Curve_52g1o")
+
+[sub_resource type="Curve" id="Curve_u2731"]
+_data = [Vector2(0, 0), 0.0, 6.65535, 0, 0, Vector2(0.09375, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.803125, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.96775, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_t8g2b"]
+curve = SubResource("Curve_u2731")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7lcat"]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 0.25, 1)
+emission_shape = 3
+emission_box_extents = Vector3(64, 512, 1)
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 98, 0)
+linear_accel_min = 10.0
+linear_accel_max = 20.0
+linear_accel_curve = SubResource("CurveTexture_14eil")
+scale_curve = SubResource("CurveTexture_t8g2b")
+turbulence_enabled = true
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+modulate = Color(0, 0, 0, 1)
+amount = 4098
+process_material = SubResource("ParticleProcessMaterial_7lcat")
+lifetime = 3.0

@@ -79,6 +79,7 @@ func _ready():
 func _ready_navmesh():
 	await get_tree().physics_frame
 	initialized = true
+	_receive_command_follow()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
