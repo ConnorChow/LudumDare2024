@@ -167,8 +167,10 @@ func get_input():
 				antMine()
 			if Input.is_action_just_pressed("5"):
 				pass
-
-		
+	
+	if Input.is_action_just_pressed("role_call"):
+		roleCall()
+	
 	if Input.is_action_just_pressed("recall"):
 		if heldObject != null:
 				heldObject.reparent(get_parent())
@@ -375,7 +377,7 @@ func roleCall():
 func antForage():
 	for ant in following_ants:
 		ant.call_deferred("_receive_command_forage")
-		following_ants.clear()
+	following_ants.clear()
 
 	
 func antFollow():
