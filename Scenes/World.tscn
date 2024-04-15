@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3lixqglawbhi"]
+[gd_scene load_steps=16 format=3 uid="uid://d3lixqglawbhi"]
 
 [ext_resource type="Texture2D" uid="uid://b80rkqf2yl0ua" path="res://Assets/placeHolder.png" id="1_u32q8"]
 [ext_resource type="Texture2D" uid="uid://c1wq40epls84g" path="res://Assets/LudumDare16x16.png" id="2_fu1j3"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://pstoogj43le5" path="res://Objects/currencyCollectSmall.tscn" id="3_ne0fx"]
 [ext_resource type="PackedScene" uid="uid://c84pjnwkgvdxr" path="res://Objects/playerBase.tscn" id="4_4cb53"]
 [ext_resource type="Texture2D" uid="uid://fduv66ry3ynh" path="res://Assets/floorPlacejholder.png" id="5_d13qm"]
+[ext_resource type="AudioStream" uid="uid://ud6lpaleb0xf" path="res://Assets/Music/smooth-cold-wind-looped-135538.mp3" id="8_jb4jx"]
+[ext_resource type="AudioStream" uid="uid://nwbcq8jusvq1" path="res://Assets/Music/possession-173851.mp3" id="9_ng6de"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xt435"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -772,3 +774,19 @@ z_index = -10
 position = Vector2(-107, 509)
 scale = Vector2(-311.802, 266.007)
 texture = ExtResource("5_d13qm")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Snow" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("8_jb4jx")
+volume_db = 5.0
+autoplay = true
+
+[node name="music" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("9_ng6de")
+volume_db = -5.0
+autoplay = true

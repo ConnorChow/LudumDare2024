@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://da2vmxnc558aj"]
+[gd_scene load_steps=5 format=3 uid="uid://da2vmxnc558aj"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu.gd" id="1_w2gt0"]
+[ext_resource type="AudioStream" uid="uid://c15hbed8im77g" path="res://Assets/Music/melancholy-in-winter-182627.mp3" id="2_ywlv4"]
+[ext_resource type="AudioStream" uid="uid://ud6lpaleb0xf" path="res://Assets/Music/smooth-cold-wind-looped-135538.mp3" id="3_2mh2s"]
+
+[sub_resource type="Curve2D" id="Curve2D_f8888"]
+_data = {
+"points": PackedVector2Array(25.1951, 6.17363, -25.1951, -6.17363, 332, -62, 22.7042, -5.04538, -22.7042, 5.04538, 158, -31, 25.6473, -13.4543, -25.6473, 13.4543, 39, 0, 10.0908, -19.7611, -10.0908, 19.7611, -26, 77, 1.68179, -23.9655, -1.68179, 23.9655, -34, 166, -2.52269, -21.0224, 2.52269, 21.0224, -40, 263, -30.6927, -9.24986, 30.6927, 9.24986, 11, 334, -41.2039, -1.26134, 41.2039, 1.26134, 172, 328, -39.5221, 5.46583, 39.5221, -5.46583, 258, 330, -0.420448, 42.0448, 0.420448, -42.0448, 299, 228, -0.840896, 21.8633, 0.840896, -21.8633, 291, 146, -15.5566, 24.8064, 15.5566, -24.8064, 309, 101, 0.33371, 22.6923, -0.33371, -22.6923, 333, 46, -14.6301, 22.181, 14.6301, -22.181, 346, 7, 4.17137, 25.6957, -4.17137, -25.6957, 369, -24, 5.33936, 5.00565, -5.33936, -5.00565, 336, -59, 0, 0, 0, 0, 332, -62)
+}
+point_count = 17
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_w2gt0")
@@ -70,6 +78,24 @@ layout_mode = 2
 [node name="HSeparator2" type="HSeparator" parent="Control/PanelContainer2/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ywlv4")
+autoplay = true
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(36, 14)
+curve = SubResource("Curve2D_f8888")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(332, -62)
+rotation = -2.90129
+
+[node name="cold" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D"]
+stream = ExtResource("3_2mh2s")
+volume_db = 5.0
+autoplay = true
+attenuation = 2.2974
 
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
