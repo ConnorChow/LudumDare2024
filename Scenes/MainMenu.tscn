@@ -113,6 +113,16 @@ attenuation = 2.2974
 
 [node name="Tutorial" parent="." instance=ExtResource("5_gg5g5")]
 
+[node name="Label" type="Label" parent="."]
+offset_left = 128.0
+offset_top = 16.0
+offset_right = 280.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.839216, 0.996078, 0.968627, 1)
+theme_override_colors/font_shadow_color = Color(0.0117647, 0.0117647, 0.0117647, 1)
+theme_override_font_sizes/font_size = 31
+text = "Wintercall"
+
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="drag_ended" from="Control/PanelContainer2/VBoxContainer/DifficultySlider" to="." method="_on_difficulty_slider_drag_ended"]
