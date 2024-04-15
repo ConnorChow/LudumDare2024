@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhtktkoodybxw"]
+
+[ext_resource type="Texture2D" uid="uid://f3q2p8yks227" path="res://Assets/LD Outro.png" id="1_2biv6"]
+[ext_resource type="AudioStream" uid="uid://ud6lpaleb0xf" path="res://Assets/Music/smooth-cold-wind-looped-135538.mp3" id="2_ojoml"]
+[ext_resource type="AudioStream" uid="uid://c15hbed8im77g" path="res://Assets/Music/melancholy-in-winter-182627.mp3" id="3_jtbfc"]
+
+[node name="Outro" type="Node"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 80.0
+offset_right = 346.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.270588, 0.270588, 0.270588, 0.682353)
+theme_override_font_sizes/font_size = 10
+text = "Chowbacca
+Programming
+AI
+Design"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 80.0
+offset_right = 146.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.270588, 0.270588, 0.270588, 0.682353)
+theme_override_font_sizes/font_size = 10
+text = "DungeonMartian
+Programming
+Art
+Design"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 192.0
+offset_right = 265.0
+offset_bottom = 293.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.270588, 0.270588, 0.270588, 0.682353)
+theme_override_font_sizes/font_size = 8
+text = "Music
+Melancholy in Winter by Nadia Cripps
+Possession by PurplePlanetMusic
+
+SFX sourced from Pixabay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LdOutro" type="Sprite2D" parent="."]
+z_index = -7
+scale = Vector2(0.333, 0.333)
+texture = ExtResource("1_2biv6")
+centered = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ojoml")
+volume_db = 5.0
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jtbfc")
+autoplay = true
