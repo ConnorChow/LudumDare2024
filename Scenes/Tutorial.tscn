@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://deamrdcsyafem"]
+[gd_scene load_steps=6 format=3 uid="uid://deamrdcsyafem"]
 
 [ext_resource type="Script" path="res://Scenes/Tutorial.gd" id="1_f3xlj"]
+[ext_resource type="Texture2D" uid="uid://c1wq40epls84g" path="res://Assets/LudumDare16x16.png" id="2_51u32"]
+[ext_resource type="Texture2D" uid="uid://s8s5tb1ppy7o" path="res://Assets/LudumDare32x32.png" id="3_35hqr"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gxu1g"]
 light_mode = 1
@@ -27,7 +29,6 @@ material = SubResource("CanvasItemMaterial_gxu1g")
 script = ExtResource("1_f3xlj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-visible = false
 use_parent_material = true
 offset_top = 8.0
 offset_right = 128.0
@@ -58,7 +59,6 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="PanelContainer2" type="PanelContainer" parent="."]
-visible = false
 use_parent_material = true
 offset_left = 136.0
 offset_top = 8.0
@@ -73,18 +73,17 @@ size_flags_vertical = 1
 theme_override_font_sizes/font_size = 7
 text = "Instructions:
 
-Gather the elemental gems to build your army and improve your abilities to fight the encroaching entities.
+Gather the elemental gems to build your army and improve your abilities to fight the encroaching entities
 
 Defeat your enemies! By claiming your opponents heart, and taking it back to your base you have claimed victory over them. Collect all 6 to win!
 
-Explore! There is a lot that can be gained by understanding the layout of the world.
+Explore! There is a lot that can be gained by understanding the layout of the world
 
-Place lights! They can be used to make your supply lines, or your battle plans."
+Place lights! They can be used to make your supply lines, or your battle plans"
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="PanelContainer3" type="PanelContainer" parent="."]
-visible = false
 use_parent_material = true
 offset_left = 272.0
 offset_top = 8.0
@@ -99,11 +98,11 @@ size_flags_vertical = 1
 theme_override_font_sizes/font_size = 7
 text = "Instructions:
 
-Guide your minions in combat and collection. They will aid you to the death.
+Guide your minions in combat and collection. They will aid you to the death
 
-Minions can be left to complete tasks automatically, but will not search very far.
+Minions can be left to complete tasks automatically, but will not search very far
 
-If your minions encounter enemies while idle they will fight, likely to the death.
+If your minions encounter enemies while idle they will fight, likely to the death
 
 In total; gather resouces, improves your stats and defenses then, hunt your enemies before they have grown out of control"
 horizontal_alignment = 1
@@ -130,5 +129,35 @@ offset_top = 8.0
 offset_right = 24.0
 offset_bottom = 16.0
 scale = Vector2(0.972015, 1.01769)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(144, 56)
+texture = ExtResource("2_51u32")
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(144, 168)
+texture = ExtResource("2_51u32")
+region_enabled = true
+region_rect = Rect2(0, 48, 16, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(144, 280)
+texture = ExtResource("2_51u32")
+region_enabled = true
+region_rect = Rect2(48, 16, 16, 16)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(336, 32)
+texture = ExtResource("2_51u32")
+region_enabled = true
+region_rect = Rect2(32, 16, 16, 16)
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(64, 152)
+texture = ExtResource("3_35hqr")
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)
 
 [connection signal="pressed" from="Label/Button" to="." method="_on_button_pressed"]

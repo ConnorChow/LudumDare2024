@@ -69,11 +69,11 @@ scale = Vector2(0.333, 0.333)
 texture = ExtResource("1_2biv6")
 centered = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="cold" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ojoml")
 volume_db = 5.0
 autoplay = true
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="melancholy" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_jtbfc")
 autoplay = true
