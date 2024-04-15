@@ -409,30 +409,30 @@ func _on_role_call_pressed():
 	roleCall()
 
 func antUpgrade():
-	match antUpgrades:
-		0:
-			pass
-		1:
-			#ant speed +
-			pass
-		2:
-			pass
-			#ant health +
-		3:
-			#ant damage +
-			pass
-		4:
-			#ant speed +
-			pass
-		5:
-			#ant health +
-			pass
-		6:
-			#ant damage +
-			pass
-		_:
-			#all stats up
-			pass
+	for ant in get_tree().get_nodes_in_group("ant"):
+		match antUpgrades:
+			0:
+				pass
+			1:
+				ant.movement_speed += 5
+			2:
+				ant.max_health +=5
+				ant.health +=5
+			3:
+				ant.fighting_strength += 5
+			4:
+				ant.movement_speed += 5
+			5:
+				ant.max_health +=5
+				ant.health +=5
+			6:
+				ant.fighting_strength += 5
+			_:
+				ant.fighting_strength += 3
+				ant.max_health +=3
+				ant.health +=3
+				ant.movement_speed += 3
+
 
 func playerUpgrade():
 	match playerUpgrades:
