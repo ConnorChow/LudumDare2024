@@ -325,7 +325,6 @@ func _on_buy_player_pressed():
 func buyPlayer():
 	playerUpgrade()
 	playerUpgrades +=1
-	#upgrade player
 	CurrencyCount.currency -= CurrencyCount.playerUpgradeCost
 	#Same deal, these should be flat costs, that have set values based on the 
 	#specific upgrade. I don't think we need to scale these based on the players
@@ -406,8 +405,31 @@ func _on_role_call_pressed():
 	roleCall()
 
 func antUpgrade():
-	
-	pass
+	match antUpgrades:
+		0:
+			pass
+		1:
+			#ant speed +
+			pass
+		2:
+			pass
+			#ant health +
+		3:
+			#ant damage +
+			pass
+		4:
+			#ant speed +
+			pass
+		5:
+			#ant health +
+			pass
+		6:
+			#ant damage +
+			pass
+		_:
+			#all stats up
+			pass
+
 func playerUpgrade():
 	match playerUpgrades:
 		0:
