@@ -10,7 +10,7 @@ radius = 29.0172
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o275v"]
 
-[node name="playerBase" type="Area2D"]
+[node name="playerBase" type="Area2D" groups=["player_base"]]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_2dojn")
