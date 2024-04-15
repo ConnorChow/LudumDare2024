@@ -107,7 +107,7 @@ func _physics_process(delta):
 			walk_1.play()
 	else:
 		walk_1.stop()
-		print("fuck")
+
 
 
 

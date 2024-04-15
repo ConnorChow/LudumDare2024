@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://cpf5a0mvh6t14"]
 
-[ext_resource type="Texture2D" uid="uid://j8tv3gamxbfg" path="res://Assets/placeHolder2.png" id="1_8pif0"]
+[ext_resource type="Texture2D" uid="uid://c1wq40epls84g" path="res://Assets/LudumDare16x16.png" id="1_ut3cc"]
 [ext_resource type="Texture2D" uid="uid://dfx0pakajpiw1" path="res://Assets/lightPlaceHolder.png" id="2_7orx0"]
 
 [node name="LightPlace" type="Sprite2D"]
-texture = ExtResource("1_8pif0")
+texture = ExtResource("1_ut3cc")
 region_enabled = true
-region_rect = Rect2(20, 0, 20, 20)
+region_rect = Rect2(48, 16, 16, 16)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 blend_mode = 2

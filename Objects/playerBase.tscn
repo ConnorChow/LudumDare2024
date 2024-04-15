@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://c84pjnwkgvdxr"]
 
 [ext_resource type="Script" path="res://Objects/playerBase.gd" id="1_2dojn"]
-[ext_resource type="Texture2D" uid="uid://b80rkqf2yl0ua" path="res://Assets/placeHolder.png" id="1_3gyug"]
 [ext_resource type="PackedScene" uid="uid://dtmt71q86ldtu" path="res://AI/AntSim/Ant.tscn" id="2_l86it"]
 [ext_resource type="Texture2D" uid="uid://dfx0pakajpiw1" path="res://Assets/lightPlaceHolder.png" id="3_hpg42"]
+[ext_resource type="Texture2D" uid="uid://s8s5tb1ppy7o" path="res://Assets/LudumDare32x32.png" id="3_pheix"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_31d2t"]
 radius = 29.0172
@@ -20,9 +20,9 @@ minion = ExtResource("2_l86it")
 shape = SubResource("CircleShape2D_31d2t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_3gyug")
+texture = ExtResource("3_pheix")
 region_enabled = true
-region_rect = Rect2(80, 0, 16, 16)
+region_rect = Rect2(0, 32, 16, 16)
 
 [node name="currencyDetector" type="Area2D" parent="."]
 collision_layer = 8

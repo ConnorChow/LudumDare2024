@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2tamha3466kh"]
 
-[ext_resource type="Texture2D" uid="uid://j8tv3gamxbfg" path="res://Assets/placeHolder2.png" id="1_eipku"]
+[ext_resource type="Texture2D" uid="uid://c1wq40epls84g" path="res://Assets/LudumDare16x16.png" id="1_8w8yn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fbtgv"]
 size = Vector2(16, 16)
@@ -10,9 +10,9 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_eipku")
+texture = ExtResource("1_8w8yn")
 region_enabled = true
-region_rect = Rect2(40, 0, 20, 20)
+region_rect = Rect2(0, 32, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fbtgv")

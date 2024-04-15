@@ -210,9 +210,9 @@ mesh = SubResource("SphereMesh_kil61")
 [node name="Light" type="Sprite2D" parent="UiNodes/placeWheel"]
 use_parent_material = true
 position = Vector2(16, -59)
-texture = ExtResource("3_0ykis")
+texture = ExtResource("2_6cv7j")
 region_enabled = true
-region_rect = Rect2(20, 0, 20, 20)
+region_rect = Rect2(48, 16, 16, 16)
 
 [node name="LightLabel" type="Label" parent="UiNodes/placeWheel/Light"]
 use_parent_material = true
@@ -234,9 +234,9 @@ scale = Vector2(1.99982, 1.99982)
 [node name="BattleTower" type="Sprite2D" parent="UiNodes/placeWheel"]
 use_parent_material = true
 position = Vector2(16, 11)
-texture = ExtResource("3_0ykis")
+texture = ExtResource("2_6cv7j")
 region_enabled = true
-region_rect = Rect2(40, 0, 20, 20)
+region_rect = Rect2(0, 32, 16, 16)
 
 [node name="BattleLabel" type="Label" parent="UiNodes/placeWheel/BattleTower"]
 use_parent_material = true
