@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://da2vmxnc558aj"]
+[gd_scene load_steps=6 format=3 uid="uid://da2vmxnc558aj"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu.gd" id="1_w2gt0"]
 [ext_resource type="AudioStream" uid="uid://c15hbed8im77g" path="res://Assets/Music/melancholy-in-winter-182627.mp3" id="2_ywlv4"]
 [ext_resource type="AudioStream" uid="uid://ud6lpaleb0xf" path="res://Assets/Music/smooth-cold-wind-looped-135538.mp3" id="3_2mh2s"]
+[ext_resource type="Texture2D" uid="uid://dfc2lwj2uixw0" path="res://Assets/LudumDare SPlash.png" id="4_nvp6g"]
 
 [sub_resource type="Curve2D" id="Curve2D_f8888"]
 _data = {
@@ -13,19 +14,28 @@ point_count = 17
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_w2gt0")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.333, 0.333)
+texture = ExtResource("4_nvp6g")
+centered = false
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -270.0
+offset_top = -32.0
+offset_right = -270.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
 layout_mode = 2
-offset_left = 322.0
+offset_left = 286.0
 offset_top = 48.0
-offset_right = 392.0
+offset_right = 356.0
 offset_bottom = 122.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
@@ -46,10 +56,10 @@ text = "Options"
 [node name="PanelContainer2" type="PanelContainer" parent="Control"]
 visible = false
 layout_mode = 2
-offset_left = 272.0
-offset_top = 128.0
-offset_right = 392.0
-offset_bottom = 242.0
+offset_left = 366.0
+offset_top = 48.0
+offset_right = 486.0
+offset_bottom = 162.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer2"]
 layout_mode = 2
