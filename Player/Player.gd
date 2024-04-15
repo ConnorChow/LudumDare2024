@@ -182,6 +182,11 @@ func get_input():
 				potential_ant.call_deferred("_receive_command_follow")
 				following_ants.append(potential_ant)
 	
+	if Input.is_action_just_pressed("role_call"):
+		for ant in get_tree().get_nodes_in_group("ant"):
+			(ant as Node2D).call_deferred("_receive_command_follow")
+			following_ants.append(ant as Node2D)
+	
 	if Input.is_action_just_pressed("assign_foraging"):
 		for ant in following_ants:
 			ant.call_deferred("_receive_command_forage")
