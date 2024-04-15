@@ -79,13 +79,16 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="Control/PanelContainer2/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Streamer Mode"
 
 [node name="StreamerMode" type="CheckButton" parent="Control/PanelContainer2/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="Control/PanelContainer2/VBoxContainer"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
