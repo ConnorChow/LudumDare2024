@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://da2vmxnc558aj"]
+[gd_scene load_steps=7 format=3 uid="uid://da2vmxnc558aj"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu.gd" id="1_w2gt0"]
 [ext_resource type="AudioStream" uid="uid://c15hbed8im77g" path="res://Assets/Music/melancholy-in-winter-182627.mp3" id="2_ywlv4"]
 [ext_resource type="AudioStream" uid="uid://ud6lpaleb0xf" path="res://Assets/Music/smooth-cold-wind-looped-135538.mp3" id="3_2mh2s"]
 [ext_resource type="Texture2D" uid="uid://dfc2lwj2uixw0" path="res://Assets/LudumDare SPlash.png" id="4_nvp6g"]
+[ext_resource type="PackedScene" uid="uid://deamrdcsyafem" path="res://Scenes/Tutorial.tscn" id="5_gg5g5"]
 
 [sub_resource type="Curve2D" id="Curve2D_f8888"]
 _data = {
@@ -109,6 +110,8 @@ stream = ExtResource("3_2mh2s")
 volume_db = 5.0
 autoplay = true
 attenuation = 2.2974
+
+[node name="Tutorial" parent="." instance=ExtResource("5_gg5g5")]
 
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
