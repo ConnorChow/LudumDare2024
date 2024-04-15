@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1p10wy7pie6b"]
+
+[ext_resource type="Texture2D" uid="uid://myf5m4no3qy" path="res://Assets/recall.png" id="1_h18op"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dka7r"]
+lifetime_randomness = 0.23
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+hue_variation_min = -0.68
+hue_variation_max = 0.23
+turbulence_enabled = true
+turbulence_noise_speed_random = 2.95
+
+[node name="Recall" type="GPUParticles2D"]
+amount_ratio = 0.5769
+process_material = SubResource("ParticleProcessMaterial_dka7r")
+texture = ExtResource("1_h18op")

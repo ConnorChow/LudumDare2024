@@ -66,7 +66,7 @@ var canGrab : bool = true
 #duration that the recall takes
 @onready var recall_timer = $recallTimer
 #the animation that the sprite takes on during the recall. will need to be changed
-@onready var recall_sprite = $recallSprite
+@onready var recall_anim = $RecallAnim
 var recalling : bool = false
 
 #walk timer
@@ -216,15 +216,17 @@ var following_ants : Array
 func recall(homePos :Vector2):
 	if !recalling:
 		homePosition = homePos
-		sprite.visible=false
-		recall_sprite.visible = true
+		recall_anim.visible = true
+		#sprite.visible=false
+		#recall_sprite.visible = true
 		recalling = true
 		recall_timer.start()
 
 func stopRecall():
 	recalling = false
-	sprite.visible=true
-	recall_sprite.visible = false
+	recall_anim.visible = false
+	#sprite.visible=true
+	#recall_sprite.visible = false
 	recall_timer.stop()
 
 func _on_recall_timer_timeout():
