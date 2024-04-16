@@ -44,17 +44,38 @@ y_sort_enabled = true
 [node name="Ant" parent="." instance=ExtResource("1_1t7q6")]
 position = Vector2(5, 42)
 behaviour_state = 2
+idle_state = 1
 task_state = 1
+mine_state = 0
+forage_state = 0
+fight_state = 0
+max_health = 0.0
+fighting_strength = 20.0
+flag = Vector2(0, 0)
 
 [node name="Ant2" parent="." instance=ExtResource("1_1t7q6")]
 position = Vector2(-5, -99)
 behaviour_state = 2
+idle_state = 1
 task_state = 1
+mine_state = 0
+forage_state = 0
+fight_state = 0
+max_health = 0.0
+fighting_strength = 20.0
+flag = Vector2(0, 0)
 
 [node name="Ant3" parent="." instance=ExtResource("1_1t7q6")]
 position = Vector2(-4, -44)
 behaviour_state = 2
+idle_state = 1
 task_state = 1
+mine_state = 0
+forage_state = 0
+fight_state = 0
+max_health = 0.0
+fighting_strength = 20.0
+flag = Vector2(0, 0)
 
 [node name="placeHolderMap" type="TileMap" parent="."]
 z_index = -5

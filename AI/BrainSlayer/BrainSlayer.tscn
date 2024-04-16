@@ -8,3 +8,4 @@ texture = ExtResource("1_rm27j")
 region_enabled = true
 region_rect = Rect2(16, 32, 16, 16)
 script = ExtResource("2_dpf2n")
+move_speed = 2.5

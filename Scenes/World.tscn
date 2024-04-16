@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d3lixqglawbhi"]
+[gd_scene load_steps=19 format=3 uid="uid://d3lixqglawbhi"]
 
 [ext_resource type="Texture2D" uid="uid://b80rkqf2yl0ua" path="res://Assets/placeHolder.png" id="1_u32q8"]
 [ext_resource type="Texture2D" uid="uid://c1wq40epls84g" path="res://Assets/LudumDare16x16.png" id="2_fu1j3"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://ud6lpaleb0xf" path="res://Assets/Music/smooth-cold-wind-looped-135538.mp3" id="8_jb4jx"]
 [ext_resource type="AudioStream" uid="uid://nwbcq8jusvq1" path="res://Assets/Music/possession-173851.mp3" id="9_ng6de"]
 [ext_resource type="PackedScene" uid="uid://d4gfreghrj8pw" path="res://Objects/enemyFlag.tscn" id="10_l5y8f"]
+[ext_resource type="PackedScene" uid="uid://bt5u3u0ra0b4w" path="res://AI/BrainSlayer/BrainSlayerGoop.tscn" id="11_bxsll"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xt435"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -893,3 +894,7 @@ position = Vector2(-432, 1472)
 
 [node name="EnemyFlag6" parent="." instance=ExtResource("10_l5y8f")]
 position = Vector2(344, 1432)
+
+[node name="BrainSlayerGoop" parent="." node_paths=PackedStringArray("world_tilemap", "spawn_points_system") instance=ExtResource("11_bxsll")]
+world_tilemap = NodePath("../placeHolderMap")
+spawn_points_system = NodePath("../EnemyPoints")

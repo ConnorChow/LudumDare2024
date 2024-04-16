@@ -1,0 +1,26 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://v5vno5l15axc"]
+
+[ext_resource type="Texture2D" uid="uid://s8s5tb1ppy7o" path="res://Assets/LudumDare32x32.png" id="1_8c55w"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lk4oe"]
+texture = ExtResource("1_8c55w")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+
+[resource]
+physics_layer_0/collision_layer = 0
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_lk4oe")

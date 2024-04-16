@@ -1,32 +1,21 @@
 [gd_scene load_steps=5 format=3 uid="uid://bt5u3u0ra0b4w"]
 
 [ext_resource type="Script" path="res://BrainGoop.gd" id="1_3rcc7"]
-[ext_resource type="Texture2D" uid="uid://s8s5tb1ppy7o" path="res://Assets/LudumDare32x32.png" id="1_5ucrv"]
+[ext_resource type="TileSet" uid="uid://v5vno5l15axc" path="res://Map/GoopTileset.tres" id="1_4wm33"]
+[ext_resource type="PackedScene" uid="uid://df014dwc0slt6" path="res://AI/BrainSlayer/BrainSlayer.tscn" id="3_djk6l"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lk4oe"]
-texture = ExtResource("1_5ucrv")
-0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
-0:1/0 = 0
-0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/0/physics_layer_0/angular_velocity = 0.0
-1:1/0 = 0
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
-0:2/0 = 0
-0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/0/physics_layer_0/angular_velocity = 0.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjv1x"]
+size = Vector2(16, 16)
 
-[sub_resource type="TileSet" id="TileSet_5kyyg"]
-physics_layer_0/collision_layer = 16
-physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_lk4oe")
-
-[node name="TileMap" type="TileMap"]
-tile_set = SubResource("TileSet_5kyyg")
+[node name="BrainSlayerGoop" type="TileMap" groups=["goop"]]
+tile_set = ExtResource("1_4wm33")
 format = 2
 script = ExtResource("1_3rcc7")
+growth_speed = 0.35
+brain = ExtResource("3_djk6l")
+goop_tileset = ExtResource("1_4wm33")
+collision_square = SubResource("RectangleShape2D_pjv1x")
+
+[node name="Area2D" type="Area2D" parent="." groups=["goop_body"]]
+collision_layer = 16
+collision_mask = 0

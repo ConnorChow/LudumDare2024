@@ -28,7 +28,7 @@ max_speed = 8.0
 
 [node name="VisibilityScanner" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 8
+collision_mask = 24
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisibilityScanner"]
@@ -36,7 +36,7 @@ shape = SubResource("CircleShape2D_4g6hu")
 
 [node name="GrabbingScanner" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 24
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrabbingScanner"]
@@ -48,5 +48,9 @@ position = Vector2(3, 3)
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_compute_pathfinding"]
 [connection signal="area_entered" from="VisibilityScanner" to="." method="_entity_seen"]
 [connection signal="area_exited" from="VisibilityScanner" to="." method="entity_lost_sight"]
+[connection signal="area_shape_entered" from="VisibilityScanner" to="." method="potential_enemy_reached"]
+[connection signal="area_shape_exited" from="VisibilityScanner" to="." method="potential_enemy_escaped_reach"]
 [connection signal="area_entered" from="GrabbingScanner" to="." method="entity_entered_range"]
 [connection signal="area_exited" from="GrabbingScanner" to="." method="entity_exited_range"]
+[connection signal="area_shape_entered" from="GrabbingScanner" to="." method="potential_enemy_seen"]
+[connection signal="area_shape_exited" from="GrabbingScanner" to="." method="potential_enemy_lost_sight"]
