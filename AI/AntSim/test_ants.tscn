@@ -49,7 +49,7 @@ task_state = 1
 mine_state = 0
 forage_state = 0
 fight_state = 0
-max_health = 0.0
+max_health = 100.0
 fighting_strength = 20.0
 flag = Vector2(0, 0)
 
@@ -61,7 +61,7 @@ task_state = 1
 mine_state = 0
 forage_state = 0
 fight_state = 0
-max_health = 0.0
+max_health = 100.0
 fighting_strength = 20.0
 flag = Vector2(0, 0)
 
@@ -73,7 +73,7 @@ task_state = 1
 mine_state = 0
 forage_state = 0
 fight_state = 0
-max_health = 0.0
+max_health = 100.0
 fighting_strength = 20.0
 flag = Vector2(0, 0)
 

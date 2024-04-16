@@ -15,7 +15,3 @@ growth_speed = 0.35
 brain = ExtResource("3_djk6l")
 goop_tileset = ExtResource("1_4wm33")
 collision_square = SubResource("RectangleShape2D_pjv1x")
-
-[node name="Area2D" type="Area2D" parent="." groups=["goop_body"]]
-collision_layer = 16
-collision_mask = 0

@@ -1,7 +1,5 @@
 extends TileMap
 
-@onready var area_2d : Area2D = $Area2D
-
 @export var world_tilemap : TileMap
 @export var tile_damage : float = 20 # dps applied to ants
 @export var tile_max_health : float = 100 # max health each tile gets
@@ -81,19 +79,24 @@ func _spawn_goop(tile : Vector2i):
 	tile_healths[tile] = tile_max_health
 	var tile_position : Vector2 = world_tilemap.to_global(world_tilemap.map_to_local(tile))
 	
+	var new_area = Area2D.new()
 	tile_colliders[tile] = CollisionShape2D.new() as CollisionShape2D
 	var new_collider = tile_colliders[tile] as CollisionShape2D
 	
+	new_area.global_position = tile_position
+	new_area.add_to_group("goop_body")
 	new_collider.global_position = tile_position
-	new_collider.owner = get_tree().root
 	new_collider.shape = collision_square
 	
-	area_2d.add_child(new_collider)
-	#collider_tiles[new_collider] = tile
+	add_child(new_area)
+	new_area.owner = get_tree().root
+	new_area.add_child(new_collider)
+	new_collider.owner = get_tree().root
+	new_area.collision_layer = 16
+	new_area.collision_mask = 16
 
-func _damage_goop(shape_index : int, damage : float):
-	var shape = area_2d.shape_find_owner(shape_index)
-	var tile : Vector2i = world_tilemap.local_to_map((area_2d.shape_owner_get_owner(shape) as Node2D).global_position)
+func _damage_goop(area : Area2D, damage : float):
+	var tile : Vector2i = world_tilemap.local_to_map(world_tilemap.to_local(area.global_position))
 	if tile_healths.has(tile):
 		tile_healths[tile] -= damage
 	else:

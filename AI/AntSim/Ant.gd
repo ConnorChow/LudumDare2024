@@ -48,8 +48,8 @@ enum FightState {
 @onready var visibility_scanner : Area2D = $VisibilityScanner
 @onready var grabbing_scanner : Area2D = $GrabbingScanner
 
-@export var max_health : float
-var health : float
+@export var max_health : float = 100
+var health : float = 100
 
 @export var patrol_radius : float = 25
 @export var movement_speed : float = 10
@@ -65,6 +65,8 @@ var player_base : Node2D
 var currency_value : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	health = max_health
+	
 	navigation_agent_2d.path_desired_distance = 10.0
 	navigation_agent_2d.target_desired_distance = 10.0
 	call_deferred("_ready_navmesh")
@@ -169,22 +171,42 @@ func _drop_item():
 		target_currency = null
 		forage_state = ForageState.APPROACH
 
-var target_enemy : int
+var target_enemy : Area2D
 @onready var brain_slayer_goop
 func _fight_behaviour(delta : float):
 	match fight_state:
 		FightState.SEEK:
 			if visible_enemies.size() > 0:
-				target_enemy = visible_enemies[0] as int
-				navigation_agent_2d.target_position = target_currency.global_position
+				target_enemy = visible_enemies[0]
+				navigation_agent_2d.target_position = target_enemy.global_position
 				fight_state = FightState.HIT
 			else:
 				_idle_behaviour(delta)
 		FightState.HIT:
-			pass
-		FightState.FLEE:
-			pass
+			if target_enemy == null or !visible_enemies.has(target_enemy):
+				fight_state = FightState.SEEK
+				return
+			else:
+				if reachable_enemies.size() > 0:
+					_attack_goop(reachable_enemies, fighting_strength)
+				else:
+					navigation_agent_2d.target_position = target_enemy.global_position
 
+var attack_buffer : bool = false
+func _attack_goop(target_enemy, fighting_strength):
+	if attack_buffer : return
+	
+	brain_slayer_goop._damage_goop(target_enemy, fighting_strength)
+	_take_returning_damage()
+	
+	attack_buffer = true
+	await get_tree().create_timer(1).timeout
+	attack_buffer = false
+
+func _take_returning_damage():
+	health -= brain_slayer_goop.tile_damage
+	if health <= 0:
+		queue_free()
 
 # set this up via group call with a signal from the player 
 func _receive_command_follow():
@@ -197,24 +219,41 @@ func _receive_command_forage():
 	forage_state = ForageState.APPROACH
 	flag = player.global_position
 
+func _receive_command_fight():
+	behaviour_state = BehaviourState.FIGHT
+	fight_state = FightState.SEEK
+	flag = player.global_position
+	idle_state = IdleState.PAUSE
+	idle_marker = flag
+
 var visible_currencies : Array[Node2D]
+var visible_enemies : Array[Area2D]
 func _entity_seen(area):
 	if area.is_in_group("Grab") and !area.get_parent().is_in_group("player"):
 		visible_currencies.append(area)
+	if (area as Area2D).is_in_group("goop_body"):
+		reachable_enemies.append(area)
 
 func entity_lost_sight(area):
 	if area.is_in_group("Grab"):
 		visible_currencies.erase(area)
+	if (area as Area2D).is_in_group("goop_body"):
+		reachable_enemies.erase(area)
 
 
 var reachable_currencies : Array[Node2D]
+var reachable_enemies : Array[Area2D]
 func entity_entered_range(area):
 	if area.is_in_group("Grab") and !area.get_parent().is_in_group("player"):
 		reachable_currencies.append(area)
+	if (area as Area2D).is_in_group("goop_body"):
+		reachable_enemies.append(area)
 
 func entity_exited_range(area):
 	if area.is_in_group("Grab"):
 		reachable_currencies.erase(area)
+	if (area as Area2D).is_in_group("goop_body"):
+		reachable_enemies.erase(area)
 
 var movement_delta : float
 var before_velocity : Vector2
@@ -255,20 +294,3 @@ func _compute_pathfinding(safe_velocity):
 	velocity = before_velocity + (avoidance_velocity * movement_delta * 2)
 	
 	global_position += velocity
-
-
-var visible_enemies : Array[int]
-func potential_enemy_seen(area_rid, area, area_shape_index, local_shape_index):
-	if (area as Area2D).is_in_group("goop_body"):
-		reachable_enemies.append(area_shape_index as int)
-func potential_enemy_lost_sight(area_rid, area, area_shape_index, local_shape_index):
-	if (area as Area2D).is_in_group("goop_body"):
-		reachable_enemies.erase(area_shape_index as int)
-
-var reachable_enemies : Array[int]
-func potential_enemy_reached(area_rid, area, area_shape_index, local_shape_index):
-	if (area as Area2D).is_in_group("goop_body"):
-		reachable_enemies.append(area_shape_index as int)
-func potential_enemy_escaped_reach(area_rid, area, area_shape_index, local_shape_index):
-	if (area as Area2D).is_in_group("goop_body"):
-		reachable_enemies.erase(area_shape_index as int)

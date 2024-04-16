@@ -394,7 +394,9 @@ func antFollow():
 			
 
 func antFight():
-	
+	for ant in following_ants:
+		ant.call_deferred("_receive_command_fight")
+	following_ants.clear()
 	pass
 func antMine():
 	
