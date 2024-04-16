@@ -231,14 +231,14 @@ var visible_enemies : Array[Area2D]
 func _entity_seen(area):
 	if area.is_in_group("Grab") and !area.get_parent().is_in_group("player"):
 		visible_currencies.append(area)
-	if (area as Area2D).is_in_group("goop_body"):
-		reachable_enemies.append(area)
+	if area.is_in_group("goop_body"):
+		visible_enemies.append(area)
 
 func entity_lost_sight(area):
 	if area.is_in_group("Grab"):
 		visible_currencies.erase(area)
-	if (area as Area2D).is_in_group("goop_body"):
-		reachable_enemies.erase(area)
+	if area.is_in_group("goop_body"):
+		visible_enemies.erase(area)
 
 
 var reachable_currencies : Array[Node2D]
@@ -246,13 +246,13 @@ var reachable_enemies : Array[Area2D]
 func entity_entered_range(area):
 	if area.is_in_group("Grab") and !area.get_parent().is_in_group("player"):
 		reachable_currencies.append(area)
-	if (area as Area2D).is_in_group("goop_body"):
+	if area.is_in_group("goop_body"):
 		reachable_enemies.append(area)
 
 func entity_exited_range(area):
 	if area.is_in_group("Grab"):
 		reachable_currencies.erase(area)
-	if (area as Area2D).is_in_group("goop_body"):
+	if area.is_in_group("goop_body"):
 		reachable_enemies.erase(area)
 
 var movement_delta : float
