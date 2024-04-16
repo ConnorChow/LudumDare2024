@@ -44,6 +44,7 @@ func _on_currency_detector_area_entered(area):
 	CurrencyCount.currency += currency
 	if area.is_in_group("Flag"):
 		CurrencyCount.flagsCapt +=1
+		CurrencyCount.currency += 9
 	player.updateCur()
 	player.dropItem()
 	area.queue_free()
